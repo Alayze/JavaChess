@@ -9,6 +9,7 @@ import java.io.IOException;
  * La classe Sprite rappresenta il componente principale di rendering
  *
  */
+
 public class Sprite implements Drawable {
 
     private Point position;
