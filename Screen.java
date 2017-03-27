@@ -2,6 +2,9 @@
  * Created by dimaer on 19/03/17.
  *  La classe principale di rendering
  */
+
+import Components.MouseObserver;
+
 import java.awt.*;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
