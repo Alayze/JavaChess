@@ -3,7 +3,8 @@
  *  La classe principale di rendering
  */
 
-import Components.MouseObserver;
+import Components.Event.MouseObserver;
+import Components.Graphics.Sprite;
 
 import java.awt.*;
 import java.awt.Rectangle;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class Screen extends Canvas{
     private Sprite sprite;
     private int width,height;
-    private Button button;
+    private Components.Graphics.Gui.Button button;
     private ArrayList<MouseObserver> observers;
     @Override
     public synchronized void addMouseListener(MouseListener mouseListener) {
@@ -25,7 +26,7 @@ public class Screen extends Canvas{
     public Screen(int Width, int Height)
     {
         initMouseListeners();
-        button = new Button(new Rectangle(10,10,40,40));
+        button = new Components.Graphics.Gui.Button(new Rectangle(10,10,40,40));
 
         observers = new ArrayList<>();
         observers.add(button);

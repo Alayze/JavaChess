@@ -1,3 +1,5 @@
+package Core;
+
 import java.awt.*;
 
 /**

@@ -1,3 +1,5 @@
+package Components.Graphics;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.ImageObserver;
@@ -6,7 +8,7 @@ import java.io.IOException;
 
 /**
  * Created by dimaer on 20/03/17.
- * La classe Sprite rappresenta il componente principale di rendering
+ * La classe Components.Graphics.Sprite rappresenta il componente principale di rendering
  *
  */
 
@@ -35,7 +37,7 @@ public class Sprite implements Drawable {
 
     /**
      * Costruttore che assegna ad ogni istanza la posizione iniziale
-     * @param position posizione di locazione di Sprite
+     * @param position posizione di locazione di Components.Graphics.Sprite
      */
     public Sprite(Point position)
     {

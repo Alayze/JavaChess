@@ -1,10 +1,14 @@
+package Core;
+
+import Core.Scene;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by dimaer on 20/03/17.
- * La classe SceneManager si occupa della gestione delle varie scene.SceneManager ha il potere di cambiare
+ * La classe Core.SceneManager si occupa della gestione delle varie scene.Core.SceneManager ha il potere di cambiare
  * le scene da rappresentare.
  */
 public class SceneManager {
@@ -18,7 +22,7 @@ public class SceneManager {
     }
 
     /**
-     * Funzione che aggiunge la scena ad contenitore di SceneManager
+     * Funzione che aggiunge la scena ad contenitore di Core.SceneManager
      * @param scene la scena da aggiungere
      */
     public void addScene(Scene scene)

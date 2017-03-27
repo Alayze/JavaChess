@@ -1,12 +1,14 @@
-/**
+package Components.Graphics.Gui; /**
  * Created by dimaer on 19/03/17.
  */
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import Components.*;
 
-public class Button implements Drawable,MouseObserver{
+import Components.Event.MouseObserver;
+import Components.Graphics.Drawable;
+
+public class Button implements Drawable,MouseObserver {
     private Rectangle boundRect;
     private MouseListener mouseListener;
     /**

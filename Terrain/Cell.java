@@ -1,3 +1,9 @@
+package Terrain;
+
+import Components.Graphics.Drawable;
+import Components.Graphics.Sprite;
+import Core.GameObject;
+
 import java.awt.*;
 
 /**
@@ -9,7 +15,7 @@ public class Cell extends GameObject implements Drawable {
         super(position);
         sprite = new Sprite(position);
     }
-    
+
     @Override
     public void draw(Graphics graphics) {
     sprite.draw(graphics);

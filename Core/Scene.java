@@ -1,10 +1,14 @@
+package Core;
+
+import Components.Graphics.Drawable;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by dimaer on 20/03/17.
- * La classe Scene rappresenta il contenitore di oggetti che devono essere disegnati
+ * La classe Core.Scene rappresenta il contenitore di oggetti che devono essere disegnati
  *
  */
 

@@ -1,3 +1,8 @@
+package Terrain;
+
+import Components.Graphics.Drawable;
+import Core.GameObject;
+
 import java.awt.*;
 import java.util.ArrayList;
 
