@@ -4,8 +4,9 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import Components.*;
 
-public class Button implements Drawable , MouseObserver{
+public class Button implements Drawable,MouseObserver{
     private Rectangle boundRect;
     private MouseListener mouseListener;
     /**
