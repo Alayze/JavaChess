@@ -1,5 +1,7 @@
 package Core;
 
+import Terrain.Cell;
+
 import java.awt.*;
 
 /**

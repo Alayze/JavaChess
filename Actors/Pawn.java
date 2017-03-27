@@ -4,6 +4,7 @@ import Components.Graphics.Drawable;
 import Components.Event.MouseObserver;
 import Components.Graphics.Sprite;
 import Core.GameObject;
+import Core.ResourceLoader;
 import Terrain.Cell;
 
 import java.awt.*;
@@ -13,12 +14,16 @@ import java.awt.event.MouseEvent;
  * Created by dimaer on 25/03/17.
  */
 public class Pawn extends GameObject implements Drawable, MouseObserver {
-    private Sprite sprite;
 
-    public Pawn(Point position)
+    private Sprite sprite;
+    private Cell current_cell;
+
+    public Pawn(Cell cell)
     {
-        super(position);
-        sprite = new Sprite(position);
+        super(cell.getPosition());
+        current_cell = cell;
+        sprite = new Sprite(cell.getPosition());
+        //sprite.setImage();
     }
 
     /**
@@ -26,7 +31,8 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
      * @param cell cella della nuova posizione
      */
     public void Move(Cell cell){
-
+        current_cell = cell;
+        setPosition(current_cell.getPosition());
     }
 
     /**
@@ -35,7 +41,7 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
      */
     public Cell getCell()
     {
-        return null;
+        return current_cell;
     }
     @Override
     public void draw(Graphics graphics) {

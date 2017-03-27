@@ -15,13 +15,13 @@ public class Board extends GameObject implements Drawable {
     public Board(Point position) {
         super(position);
         cells = new ArrayList<>();
-        composeBoard();
+        generateBoard();
     }
 
     /**
      * Metodo che costruisce il tavolo di gioco
      */
-    private void composeBoard() {
+    private void generateBoard() {
 
     }
     @Override

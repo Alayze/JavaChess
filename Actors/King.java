@@ -1,12 +1,14 @@
 package Actors;
 
+import Terrain.Cell;
+
 import java.awt.*;
 
 /**
  * Created by dimaer on 27/03/17.
  */
 public class King extends Pawn {
-    public King(Point position) {
-        super(position);
+    public King(Cell cell) {
+        super(cell);
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<Resources>
+    <sprite id = "WinterIsComing">
+        <path>src/Sprites/Backgrounds/WinterIsComing.png</path>
+    </sprite>
+    <sprite id="Pawn">
+        <path></path>
+    </sprite>
+    <sprite id="King">
+        <path></path>
+    </sprite>
+    <sprite id="Queen">
+        <path></path>
+    </sprite>
+    <sprite id="Rock">
+        <path></path>
+    </sprite>
+    <sprite id="Knight">
+        <path></path>
+    </sprite>
+    <sprite id="Bishop">
+        <path></path>
+    </sprite>
+</Resources>

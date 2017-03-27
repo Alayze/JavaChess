@@ -5,6 +5,7 @@
 
 import Components.Event.MouseObserver;
 import Components.Graphics.Sprite;
+import Core.ResourceLoader;
 
 import java.awt.*;
 import java.awt.Rectangle;
@@ -33,8 +34,9 @@ public class Screen extends Canvas{
         width= Width;
         height = Height;
 
-        sprite = new Sprite(new Point(20,20));
-        sprite.setImage("src/1.jpg");
+        sprite = new Sprite(new Point(0,0));
+        //System.out.print(ResourceLoader.getInstance().LoadResource("WinterIsComing"));
+        sprite.setImage(ResourceLoader.getInstance().LoadResource("WinterIsComing"));
 
         button.addMouseListener(new MouseAdapter() {
             @Override
@@ -82,7 +84,7 @@ public class Screen extends Canvas{
         super.paint(graphics);
         setBackground(new Color(100));
         button.draw(graphics);
-        //sprite.draw(graphics);
+        sprite.draw(graphics);
 
     }
 
