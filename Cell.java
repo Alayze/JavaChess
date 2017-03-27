@@ -9,7 +9,7 @@ public class Cell extends GameObject implements Drawable {
         super(position);
         sprite = new Sprite(position);
     }
-
+    
     @Override
     public void draw(Graphics graphics) {
     sprite.draw(graphics);

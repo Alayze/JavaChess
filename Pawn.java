@@ -14,7 +14,7 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
         super(position);
         sprite = new Sprite(position);
     }
-
+    
     /**
      * Metodo che sposta la piedina
      * @param cell cella della nuova posizione

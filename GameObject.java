@@ -5,10 +5,25 @@ import java.awt.*;
  */
 public class GameObject{
     Point position;
+    Rectangle boundRect;
     public GameObject(Point position)
     {
         this.position = position;
-
     }
 
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
+    public void setBoundRect(Rectangle boundRect) {
+        this.boundRect = boundRect;
+    }
+
+    public Point getPosition() {
+        return position;
+    }
+
+    public Rectangle getBoundRect() {
+        return boundRect;
+    }
 }
