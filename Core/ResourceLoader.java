@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 /**
+ * Classe che carica le resource
  * Created by dimaer on 27/03/17.
  */
 public final class ResourceLoader {
@@ -31,26 +32,28 @@ public final class ResourceLoader {
 
     private static final ResourceLoader resourceLoader = new ResourceLoader();
 
-    //Da proteggere
+    /**
+     * Metodo che torna l'istanza della classe
+     * @return
+     */
     public static ResourceLoader getInstance(){
         return resourceLoader;
     }
 
-    public String LoadResource(String type)
+    /**
+     *
+     * @param type
+     * @return
+     */
+    public String LoadResource(String id,String type)
     {
-        //System.out.println(document.getDocumentElement().getNodeName());
-        NodeList nodeList = document.getElementsByTagName("sprite");
+        NodeList nodeList = document.getElementsByTagName(type);
         for(int i = 0; i < nodeList.getLength();i++){
             Element element = (Element) nodeList.item(i);
-            if(element.getAttribute("id").equals(type))
+            if(element.getAttribute("id").equals(id))
                 return element.getElementsByTagName("path").item(0).getTextContent();
 
         }
-        /*Element element = (Element) document.getElementsByTagName("background").item(0);
-        System.out.println(nodeList.getLength());
-        if(element!=null)
-            return element.getTextContent();
-        else*/
             return "Error for load resource\n";
     }
 

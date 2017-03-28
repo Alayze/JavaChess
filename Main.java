@@ -1,14 +1,17 @@
 /**
  * Created by dimaer on 16/03/17.
  */
+import Core.Screen;
+
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class Main {
+
     public static void main(String[] args)
     {
-        Screen screen = new Screen(400,400);
+        Screen screen = new Screen(1024,768);
         System.out.print("Program Started");
 
         Frame mainFrame = new Frame("ChessGame");
@@ -16,7 +19,7 @@ public class Main {
 
 
 
-        mainFrame.setSize(400,400);
+        mainFrame.setSize(800,600);
         mainFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {

@@ -1,11 +1,16 @@
-/**
+package Core; /**
  * Created by dimaer on 19/03/17.
  *  La classe principale di rendering
  */
 
 import Components.Event.MouseObserver;
+import Components.Graphics.Gui.*;
+import Components.Graphics.Gui.Button;
 import Components.Graphics.Sprite;
 import Core.ResourceLoader;
+import Core.Scene;
+import Core.SceneManager;
+import Terrain.Board;
 
 import java.awt.*;
 import java.awt.Rectangle;
@@ -19,6 +24,12 @@ public class Screen extends Canvas{
     private int width,height;
     private Components.Graphics.Gui.Button button;
     private ArrayList<MouseObserver> observers;
+
+    SceneManager sceneManager = new SceneManager();
+    Scene mainMenu = new Scene(Scene.SCENE_TYPE.MAIN_MENU);
+    Scene game = new Scene(Scene.SCENE_TYPE.RUNNED_GAME);
+    Board board;
+
     @Override
     public synchronized void addMouseListener(MouseListener mouseListener) {
         super.addMouseListener(mouseListener);
@@ -27,18 +38,17 @@ public class Screen extends Canvas{
     public Screen(int Width, int Height)
     {
         initMouseListeners();
-        button = new Components.Graphics.Gui.Button(new Rectangle(10,10,40,40));
 
         observers = new ArrayList<>();
-        observers.add(button);
+        //mainMenu.addElement();
+        board = new Board(new Point(400,-200),this);
         width= Width;
         height = Height;
 
-        sprite = new Sprite(new Point(0,0));
-        //System.out.print(ResourceLoader.getInstance().LoadResource("WinterIsComing"));
-        sprite.setImage(ResourceLoader.getInstance().LoadResource("WinterIsComing"));
+        //sprite = new Sprite(new Point(0,0));
+        //sprite.setImage(ResourceLoader.getInstance().LoadResource("Earth_Grass_3","sprite"));
 
-        button.addMouseListener(new MouseAdapter() {
+        /*button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 System.out.print("Clicked");
@@ -48,7 +58,7 @@ public class Screen extends Canvas{
             public void mouseEntered(MouseEvent mouseEvent) {
                 //System.out.print("Entered");
             }
-        });
+        });*/
     }
 
     private void initMouseListeners()
@@ -82,16 +92,14 @@ public class Screen extends Canvas{
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        setBackground(new Color(100));
-        button.draw(graphics);
-        sprite.draw(graphics);
-
+        setBackground(new Color(255,255,255,255));
+        //sprite.draw(graphics);
+        board.draw(graphics);
     }
 
     @Override
     public void update(Graphics graphics) {
         super.update(graphics);
-        //System.out.print(getMousePosition().x);
     }
 
 

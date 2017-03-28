@@ -1,5 +1,6 @@
 package Core;
 
+import Components.Event.MouseObserver;
 import Components.Graphics.Drawable;
 
 import java.awt.*;
@@ -17,6 +18,8 @@ public class Scene {
     private List<Drawable> elements;
     SCENE_TYPE sceneType;
 
+    private ArrayList<MouseObserver> observers;
+
     public enum SCENE_TYPE {
         MAIN_MENU,OPTIONS,STATS,RUNNED_GAME
     }
@@ -30,7 +33,10 @@ public class Scene {
         this.sceneType = sceneType;
         elements = new ArrayList<Drawable>();
     }
-
+    public void addElement(Drawable element)
+    {
+        elements.add(element);
+    }
     /**
      * Metodo che torna il tipo di scena
      * @return SCENES il tipo di scena
