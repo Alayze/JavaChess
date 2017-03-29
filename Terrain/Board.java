@@ -47,17 +47,18 @@ public class Board extends GameObject implements Drawable {
             }
             if(i % 8 == 0)
             {
-                offsetY+=50;
+                offsetY+=43;
                 offsetX=0;
             }
 
             Point position = new Point(origin.x + offsetX,origin.y + offsetY);
 
             cells.add(new Cell(cartToIso(position),spriteType));
+            cells.get(i).getSprite().setDepth(i);
 
-            offsetX+=50;
+            offsetX+=43;
         }
-            cells = inverseMatrix();
+           // cells = inverseMatrix();
     }
 
     private ArrayList<Cell> inverseMatrix()
@@ -75,6 +76,17 @@ public class Board extends GameObject implements Drawable {
         return inverseCells;
     }
 
+    public ArrayList<Cell> getCells() {
+        return cells;
+    }
+    /*private ArrayList<Cell> inverseMatrix()
+    {
+        ArrayList<Cell> inverseCells = new ArrayList<>();
+        for(int i = 0;i<cells.size();i++){
+            if()
+        }
+
+    }*/
     /**
      * Metodo che converte le coordinate cartesiane nelle coordinate isometriche
      * @param vector vettore da convertire

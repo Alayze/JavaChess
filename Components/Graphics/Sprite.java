@@ -18,7 +18,8 @@ public class Sprite implements Drawable {
 
     private Image image;
     private File imageFile;
-    
+    private int depth;
+
     private ImageObserver imageObserver = new ImageObserver() {
         @Override
         public boolean imageUpdate(Image image, int i0, int i1, int i2, int i3, int i4) {
@@ -57,6 +58,19 @@ public class Sprite implements Drawable {
             System.out.print(e.getMessage());
         }
     }
+
+    public Point getPosition() {
+        return position;
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
+    }
+
     /**
      * Metodo che disegna l'immagine
      * @param graphics

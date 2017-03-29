@@ -4,7 +4,7 @@
         <path>src/Sprites/Backgrounds/WinterIsComing.png</path>
     </sprite>
     <sprite id="Pawn">
-        <path></path>
+        <path>src/Sprites/Chess/Pawn1.png</path>
     </sprite>
     <sprite id="King">
         <path></path>

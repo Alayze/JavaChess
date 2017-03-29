@@ -23,7 +23,7 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
         super(cell.getPosition());
         current_cell = cell;
         sprite = new Sprite(cell.getPosition());
-        //sprite.setImage(ResourceLoader.getInstance().LoadResource());
+        sprite.setImage(ResourceLoader.getInstance().LoadResource("Pawn","sprite"));
     }
 
     /**

@@ -3,6 +3,7 @@ package Core; /**
  *  La classe principale di rendering
  */
 
+import Actors.Pawn;
 import Components.Event.MouseObserver;
 import Components.Graphics.Gui.*;
 import Components.Graphics.Gui.Button;
@@ -11,6 +12,7 @@ import Core.ResourceLoader;
 import Core.Scene;
 import Core.SceneManager;
 import Terrain.Board;
+import Utils.Log;
 
 import java.awt.*;
 import java.awt.Rectangle;
@@ -29,7 +31,7 @@ public class Screen extends Canvas{
     Scene mainMenu = new Scene(Scene.SCENE_TYPE.MAIN_MENU);
     Scene game = new Scene(Scene.SCENE_TYPE.RUNNED_GAME);
     Board board;
-
+    Pawn pawn;
     @Override
     public synchronized void addMouseListener(MouseListener mouseListener) {
         super.addMouseListener(mouseListener);
@@ -42,6 +44,7 @@ public class Screen extends Canvas{
         observers = new ArrayList<>();
         //mainMenu.addElement();
         board = new Board(new Point(400,-200),this);
+        pawn = new Pawn(board.getCells().get(10));
         width= Width;
         height = Height;
 
@@ -95,6 +98,8 @@ public class Screen extends Canvas{
         setBackground(new Color(255,255,255,255));
         //sprite.draw(graphics);
         board.draw(graphics);
+        pawn.draw(graphics);
+        Log.getInstance().showDepth(graphics,board.getCells().get(0).getSprite());
     }
 
     @Override

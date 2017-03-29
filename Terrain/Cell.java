@@ -13,8 +13,8 @@ import java.awt.event.MouseEvent;
  * Created by dimaer on 27/03/17.
  */
 public class Cell extends GameObject implements Drawable,MouseObserver{
-    Sprite sprite;
-    Type type;
+    private Sprite sprite;
+    private Type type;
 
     public Cell(Point position,String spriteType){
         super(position);
@@ -28,6 +28,10 @@ public class Cell extends GameObject implements Drawable,MouseObserver{
     public void setType(Type type)
     {
         this.type = type;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
     }
 
     @Override
