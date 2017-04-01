@@ -13,21 +13,23 @@ import java.io.File;
  * Created by dimaer on 27/03/17.
  */
 public final class ResourceLoader {
-    private File xmlFile;
+    private File resourceFile;
+    private File levelFile;
     private DocumentBuilderFactory dbFactory;
     private DocumentBuilder dBuilder;
     private Document document;
 
     private ResourceLoader(){
-        xmlFile = new File("src/Resources.xml");
+        resourceFile = new File("src/Resources.xml");
+        levelFile = new File("src/Levels.xml");
         dbFactory = DocumentBuilderFactory.newInstance();
         try {
             dBuilder = dbFactory.newDocumentBuilder();
-            document = dBuilder.parse(xmlFile);
+            document = dBuilder.parse(resourceFile);
         } catch (Exception e){
             e.printStackTrace();
         }
-
+        System.out.print(document.getDocumentURI() + "\n");
     }
 
     private static final ResourceLoader resourceLoader = new ResourceLoader();
@@ -83,6 +85,9 @@ public final class ResourceLoader {
         }
             return "Error for load resource: " + weatherType + " " + id + "\n";
     }
+    /*private boolean checkDocument(){
+        document.getDocumentURI();
+    }*/
     public String LoadSprite(String Team,String id)
     {
         NodeList actors = document.getElementsByTagName("Actors");
