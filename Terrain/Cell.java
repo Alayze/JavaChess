@@ -19,7 +19,7 @@ public class Cell extends GameObject implements Drawable,MouseObserver{
     public Cell(Point position,String spriteType){
         super(position);
         sprite = new Sprite(position);
-        sprite.setImage(ResourceLoader.getInstance().LoadResource(spriteType,"sprite"));
+        sprite.setImage(ResourceLoader.getInstance().LoadTile(spriteType,"sprite"));
     }
 
     enum Type{
@@ -33,7 +33,6 @@ public class Cell extends GameObject implements Drawable,MouseObserver{
     public Sprite getSprite() {
         return sprite;
     }
-
     @Override
     public void update(MouseEvent mouseEvent, String message) {
 

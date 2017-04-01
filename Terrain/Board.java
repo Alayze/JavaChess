@@ -28,7 +28,7 @@ public class Board extends GameObject implements Drawable {
     private void generateBoard(Point origin) {
         int offsetX = 0;
         int offsetY = 0;
-
+        //Template e' un livelo preimpostato
         String template = "X0X0X0X0" +
                           "0X0X0X0X" +
                           "X0X0X0X0" +
@@ -38,16 +38,20 @@ public class Board extends GameObject implements Drawable {
                           "X0X0X0X0" +
                           "0X0X0X0X";
         String spriteType;
+        Cell.Type cellType;
+
         for(int i = 0;i<64;i++)
         {
             if(template.charAt(i)=='X'){
                 spriteType = "Earth_Rock_1";
+                cellType = Cell.Type.TYPE1;
             }else{
                 spriteType = "Earth_Grass_1";
+                cellType = Cell.Type.TYPE2;
             }
             if(i % 8 == 0)
             {
-                offsetY+=43;
+                offsetY+=43; //E' bruto , bisogna incapsulare
                 offsetX=0;
             }
 
@@ -55,10 +59,10 @@ public class Board extends GameObject implements Drawable {
 
             cells.add(new Cell(cartToIso(position),spriteType));
             cells.get(i).getSprite().setDepth(i);
+            cells.get(i).setType(cellType);
 
-            offsetX+=43;
+            offsetX+=43; //E' bruto , bisogna incapsulare
         }
-           // cells = inverseMatrix();
     }
 
     private ArrayList<Cell> inverseMatrix()
@@ -76,6 +80,10 @@ public class Board extends GameObject implements Drawable {
         return inverseCells;
     }
 
+    /**
+     * Metodo che torna l'insieme di celle
+     * @return ArrayList<Cell> l'insieme di celle che compongono la scachiera
+     */
     public ArrayList<Cell> getCells() {
         return cells;
     }

@@ -1,4 +1,5 @@
-package Core; /**
+package Core;
+/**
  * Created by dimaer on 19/03/17.
  *  La classe principale di rendering
  */
@@ -8,9 +9,6 @@ import Components.Event.MouseObserver;
 import Components.Graphics.Gui.*;
 import Components.Graphics.Gui.Button;
 import Components.Graphics.Sprite;
-import Core.ResourceLoader;
-import Core.Scene;
-import Core.SceneManager;
 import Terrain.Board;
 import Utils.Log;
 
@@ -22,16 +20,13 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class Screen extends Canvas{
-    private Sprite sprite;
     private int width,height;
-    private Components.Graphics.Gui.Button button;
     private ArrayList<MouseObserver> observers;
 
-    SceneManager sceneManager = new SceneManager();
-    Scene mainMenu = new Scene(Scene.SCENE_TYPE.MAIN_MENU);
-    Scene game = new Scene(Scene.SCENE_TYPE.RUNNED_GAME);
+    SceneManager sceneManager;
+    Scene mainMenu;
+    Scene game;
     Board board;
-    Pawn pawn;
     @Override
     public synchronized void addMouseListener(MouseListener mouseListener) {
         super.addMouseListener(mouseListener);
@@ -40,14 +35,17 @@ public class Screen extends Canvas{
     public Screen(int Width, int Height)
     {
         initMouseListeners();
-
+        game = new Scene(Scene.SCENE_TYPE.RUNNED_GAME);
+        mainMenu = new Scene(Scene.SCENE_TYPE.MAIN_MENU);
+        sceneManager = new SceneManager();
         observers = new ArrayList<>();
         //mainMenu.addElement();
         board = new Board(new Point(400,-200),this);
-        pawn = new Pawn(board.getCells().get(10));
+        game.addElement(board);
+        //pawn = new Pawn(board.getCells().get(0));
         width= Width;
         height = Height;
-
+        //button = new Button();
         //sprite = new Sprite(new Point(0,0));
         //sprite.setImage(ResourceLoader.getInstance().LoadResource("Earth_Grass_3","sprite"));
 
@@ -97,9 +95,11 @@ public class Screen extends Canvas{
         super.paint(graphics);
         setBackground(new Color(255,255,255,255));
         //sprite.draw(graphics);
-        board.draw(graphics);
-        pawn.draw(graphics);
-        Log.getInstance().showDepth(graphics,board.getCells().get(0).getSprite());
+        //board.draw(graphics);
+        sceneManager.setCurrentScene(Scene.SCENE_TYPE.MAIN_MENU);
+        //pawn.draw(graphics);
+        //Log.getInstance().showDepth(graphics,board.getCells());
+        //Log.getInstance().showOrigins(graphics,pawn.getSprite());
     }
 
     @Override

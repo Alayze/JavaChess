@@ -8,5 +8,6 @@ import Terrain.Cell;
 public class Bishop extends Pawn {
     public Bishop(Cell cell) {
         super(cell);
+
     }
 }

@@ -28,10 +28,17 @@ public class Log {
         for (Cell cell : cells){
             int depth = cell.getSprite().getDepth();
             graphics.drawString(new String("" + depth),
-                    cell.getSprite().getPosition().x,
-                    cell.getSprite().getPosition().y);
+                    cell.getSprite().getCenter().x , //35
+                    cell.getSprite().getCenter().y ); //20
         }
 
+    }
+    public void showOrigins(Graphics graphics,Sprite sprite)
+    {
+        //for(Drawable d : objects){
+            graphics.fillOval(sprite.getCenter().x,sprite.getCenter().y,10,10);
+            //graphics.drawOval();
+        //}
     }
     public static Log getInstance()
     {

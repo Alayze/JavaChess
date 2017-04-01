@@ -16,8 +16,7 @@ public class SceneManager {
     private List<Scene> scenes;
     private Scene currentScene;
 
-    public SceneManager()
-    {
+    public SceneManager(){
         scenes = new ArrayList<Scene>();
     }
 
@@ -34,12 +33,9 @@ public class SceneManager {
      * Funzione che imposta la scena corrente
      * @param scene Tipo di scena
      */
-    public void setCurrentScene(Scene.SCENE_TYPE scene)
-    {
-        for (Scene s : scenes)
-        {
-            if(s.getSceneType()==scene)
-            {
+    public void setCurrentScene(Scene.SCENE_TYPE scene){
+        for (Scene s : scenes){
+            if(s.getSceneType()==scene){
                 currentScene = s;
             }
         }

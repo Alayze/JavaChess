@@ -22,17 +22,19 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
     {
         super(cell.getPosition());
         current_cell = cell;
-        sprite = new Sprite(cell.getPosition());
-        sprite.setImage(ResourceLoader.getInstance().LoadResource("Pawn","sprite"));
-    }
+        sprite = new Sprite(cell.getSprite().getCenter());
 
+    }
+    protected void setSprite(String id){
+        sprite.setImage(ResourceLoader.getInstance().LoadResource(id,"sprite"));
+    }
     /**
      * Metodo che sposta la piedina
      * @param cell cella della nuova posizione
      */
     public void Move(Cell cell){
         current_cell = cell;
-        setPosition(current_cell.getPosition());
+        setPosition(current_cell.getSprite().getCenter());
     }
 
     /**
@@ -42,6 +44,10 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
     public Cell getCell()
     {
         return current_cell;
+    }
+    public Sprite getSprite()
+    {
+        return sprite;
     }
     @Override
     public void draw(Graphics graphics) {
