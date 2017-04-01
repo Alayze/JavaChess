@@ -1,0 +1,167 @@
+<?xml version="1.0" ?>
+<Resources>
+    <Backgrounds>
+        <sprite id = "Background">
+            <path>src/Sprites/Backgrounds/WinterIsComing.png</path>
+        </sprite>
+    </Backgrounds>
+
+    <Gui>
+        <sprite id = "Main_menu_button_play">
+            <path>src/Sprites/Buttons/Main_menu_button_play.png</path>
+        </sprite>
+        <sprite id = "Main_menu_button_exit">
+            <path>src/Sprites/Buttons/Main_menu_button_exit.png</path>
+        </sprite>
+        <sprite id = "Main_menu_button_options">
+            <path></path>
+        </sprite>
+        <sprite id = "Main_menu_button_statistics">
+            <path></path>
+        </sprite>
+    </Gui>
+    <Actors>
+        <team id="Red">
+            <sprite id="Pawn">
+                <path>src/Sprites/Chess/Pawn1.png</path>
+            </sprite>
+            <sprite id="King">
+                <path></path>
+            </sprite>
+            <sprite id="Queen">
+                <path></path>
+            </sprite>
+            <sprite id="Rook">
+                <path>src/Sprites/Chess/Rook.png</path>
+            </sprite>
+            <sprite id="Knight">
+                <path></path>
+            </sprite>
+            <sprite id="Bishop">
+                <path>src/Sprites/Chess/Bishop.png</path>
+            </sprite>
+        </team>
+        <team id="Blue">
+            <sprite id="Pawn">
+                <path>src/Sprites/Chess/Pawn1.png</path>
+            </sprite>
+            <sprite id="King">
+                <path></path>
+            </sprite>
+            <sprite id="Queen">
+                <path></path>
+            </sprite>
+            <sprite id="Rook">
+                <path>src/Sprites/Chess/Rook.png</path>
+            </sprite>
+            <sprite id="Knight">
+                <path></path>
+            </sprite>
+            <sprite id="Bishop">
+                <path>src/Sprites/Chess/Bishop.png</path>
+            </sprite>
+        </team>
+    </Actors>
+    <Tiles>
+        <group id="Summer">
+            <sprite id="Earth_Grass_1">
+                <path>src/Sprites/Tiles/Earth_Grass1.png</path>
+            </sprite>
+            <sprite id="Earth_Grass_2">
+                <path>src/Sprites/Tiles/Earth_Grass2.png</path>
+            </sprite>
+            <sprite id="Earth_Grass_3">
+                <path>src/Sprites/Tiles/Earth_Grass3.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_1">
+                <path>src/Sprites/Tiles/Rock1.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_2">
+                <path>src/Sprites/Tiles/Rock2.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_3">
+                <path>src/Sprites/Tiles/Rock3.png</path>
+            </sprite>
+        </group>
+        <group id="Winter">
+            <sprite id="Earth_Grass_1">
+                <path>src/Sprites/Tiles/Earth_Grass1.png</path>
+            </sprite>
+            <sprite id="Earth_Grass_2">
+                <path>src/Sprites/Tiles/Earth_Grass2.png</path>
+            </sprite>
+            <sprite id="Earth_Grass_3">
+                <path>src/Sprites/Tiles/Earth_Grass3.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_1">
+                <path>src/Sprites/Tiles/Rock1.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_2">
+                <path>src/Sprites/Tiles/Rock2.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_3">
+                <path>src/Sprites/Tiles/Rock3.png</path>
+            </sprite>
+        </group>
+        <group id="Spring">
+            <sprite id="Earth_Grass_1">
+                <path>src/Sprites/Tiles/Earth_Grass1.png</path>
+            </sprite>
+            <sprite id="Earth_Grass_2">
+                <path>src/Sprites/Tiles/Earth_Grass2.png</path>
+            </sprite>
+            <sprite id="Earth_Grass_3">
+                <path>src/Sprites/Tiles/Earth_Grass3.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_1">
+                <path>src/Sprites/Tiles/Rock1.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_2">
+                <path>src/Sprites/Tiles/Rock2.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_3">
+                <path>src/Sprites/Tiles/Rock3.png</path>
+            </sprite>
+        </group>
+        <group id="Autumn">
+            <sprite id="Earth_Grass_1">
+                <path>src/Sprites/Tiles/Earth_Grass1.png</path>
+            </sprite>
+            <sprite id="Earth_Grass_2">
+                <path>src/Sprites/Tiles/Earth_Grass2.png</path>
+            </sprite>
+            <sprite id="Earth_Grass_3">
+                <path>src/Sprites/Tiles/Earth_Grass3.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_1">
+                <path>src/Sprites/Tiles/Rock1.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_2">
+                <path>src/Sprites/Tiles/Rock2.png</path>
+            </sprite>
+            <sprite id="Earth_Rock_3">
+                <path>src/Sprites/Tiles/Rock3.png</path>
+            </sprite>
+        </group>
+    </Tiles>
+    <Annotations>
+        <annotation id="@">
+            <tile>Earth_Grass_1</tile>
+        </annotation>
+        <annotation id="#">
+            <tile>Earth_Grass_2</tile>
+        </annotation>
+        <annotation id="!">
+            <tile>Earth_Grass_3</tile>
+        </annotation>
+        <annotation id="1">
+            <tile>Earth_Rock_1</tile>
+        </annotation>
+        <annotation id="2">
+            <tile>Earth_Rock_2</tile>
+        </annotation>
+        <annotation id="3">
+            <tile>Earth_Rock_3</tile>
+        </annotation>
+    </Annotations>
+</Resources>

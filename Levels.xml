@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<Levels>
+    <level id = "1">
+        X0X0X0X0
+        0X0X0X0X
+        X0X0X0X0
+        0X0X0X0X
+        X0X0X0X0
+        0X0X0X0X
+        X0X0X0X0
+        0X0X0X0X
+    </level>
+    <level id = "2">
+        @1!2#1@1
+        1@1@1@1@
+        !1@1#1@1
+        1@1@1@1@
+        !1@1@2!2
+        3@3@2@2#
+        @1!1@1@1
+        1@1@1@1#
+    </level>
+</Levels>
