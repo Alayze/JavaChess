@@ -65,82 +65,82 @@
     <Tiles>
         <group id="Summer">
             <sprite id="Earth_Grass_1">
-                <path>src/Sprites/Tiles/Earth_Grass1.png</path>
+                <path>src/Sprites/Tiles/Summer/Earth_Grass_1.png</path>
             </sprite>
             <sprite id="Earth_Grass_2">
-                <path>src/Sprites/Tiles/Earth_Grass2.png</path>
+                <path>src/Sprites/Tiles/Summer/Earth_Grass_2.png</path>
             </sprite>
             <sprite id="Earth_Grass_3">
-                <path>src/Sprites/Tiles/Earth_Grass3.png</path>
+                <path>src/Sprites/Tiles/Summer/Earth_Grass_3.png</path>
             </sprite>
             <sprite id="Earth_Rock_1">
-                <path>src/Sprites/Tiles/Rock1.png</path>
+                <path>src/Sprites/Tiles/Summer/Earth_Rock_1.png</path>
             </sprite>
             <sprite id="Earth_Rock_2">
-                <path>src/Sprites/Tiles/Rock2.png</path>
+                <path>src/Sprites/Tiles/Summer/Earth_Rock_2.png</path>
             </sprite>
             <sprite id="Earth_Rock_3">
-                <path>src/Sprites/Tiles/Rock3.png</path>
+                <path>src/Sprites/Tiles/Summer/Earth_Rock_3.png</path>
             </sprite>
         </group>
         <group id="Winter">
             <sprite id="Earth_Grass_1">
-                <path>src/Sprites/Tiles/Earth_Grass1.png</path>
+                <path>src/Sprites/Tiles/Winter/Earth_Grass_1.png</path>
             </sprite>
             <sprite id="Earth_Grass_2">
-                <path>src/Sprites/Tiles/Earth_Grass2.png</path>
+                <path>src/Sprites/Tiles/Winter/Earth_Grass_2.png</path>
             </sprite>
             <sprite id="Earth_Grass_3">
-                <path>src/Sprites/Tiles/Earth_Grass3.png</path>
+                <path>src/Sprites/Tiles/Winter/Earth_Grass_2.png</path>
             </sprite>
             <sprite id="Earth_Rock_1">
-                <path>src/Sprites/Tiles/Rock1.png</path>
+                <path>src/Sprites/Tiles/Winter/Earth_Rock_1.png</path>
             </sprite>
             <sprite id="Earth_Rock_2">
-                <path>src/Sprites/Tiles/Rock2.png</path>
+                <path>src/Sprites/Tiles/Winter/Earth_Rock_2.png</path>
             </sprite>
             <sprite id="Earth_Rock_3">
-                <path>src/Sprites/Tiles/Rock3.png</path>
+                <path>src/Sprites/Tiles/Winter/Earth_Rock_1.png</path>
             </sprite>
         </group>
         <group id="Spring">
             <sprite id="Earth_Grass_1">
-                <path>src/Sprites/Tiles/Earth_Grass1.png</path>
+                <path>src/Sprites/Tiles/Spring/Earth_Grass1.png</path>
             </sprite>
             <sprite id="Earth_Grass_2">
-                <path>src/Sprites/Tiles/Earth_Grass2.png</path>
+                <path>src/Sprites/Tiles/Spring/Earth_Grass2.png</path>
             </sprite>
             <sprite id="Earth_Grass_3">
-                <path>src/Sprites/Tiles/Earth_Grass3.png</path>
+                <path>src/Sprites/Tiles/Spring/Earth_Grass3.png</path>
             </sprite>
             <sprite id="Earth_Rock_1">
-                <path>src/Sprites/Tiles/Rock1.png</path>
+                <path>src/Sprites/Tiles/Spring/Rock1.png</path>
             </sprite>
             <sprite id="Earth_Rock_2">
-                <path>src/Sprites/Tiles/Rock2.png</path>
+                <path>src/Sprites/Tiles/Spring/Rock2.png</path>
             </sprite>
             <sprite id="Earth_Rock_3">
-                <path>src/Sprites/Tiles/Rock3.png</path>
+                <path>src/Sprites/Tiles/Spring/Rock3.png</path>
             </sprite>
         </group>
         <group id="Autumn">
             <sprite id="Earth_Grass_1">
-                <path>src/Sprites/Tiles/Earth_Grass1.png</path>
+                <path>src/Sprites/Tiles/Autumn/Earth_Grass_1.png</path>
             </sprite>
             <sprite id="Earth_Grass_2">
-                <path>src/Sprites/Tiles/Earth_Grass2.png</path>
+                <path>src/Sprites/Tiles/Autumn/Earth_Grass_2.png</path>
             </sprite>
             <sprite id="Earth_Grass_3">
-                <path>src/Sprites/Tiles/Earth_Grass3.png</path>
+                <path>src/Sprites/Tiles/Autumn/Earth_Grass_3.png</path>
             </sprite>
             <sprite id="Earth_Rock_1">
-                <path>src/Sprites/Tiles/Rock1.png</path>
+                <path>src/Sprites/Tiles/Autumn/Earth_Rock_1.png</path>
             </sprite>
             <sprite id="Earth_Rock_2">
-                <path>src/Sprites/Tiles/Rock2.png</path>
+                <path>src/Sprites/Tiles/Autumn/Earth_Rock_2.png</path>
             </sprite>
             <sprite id="Earth_Rock_3">
-                <path>src/Sprites/Tiles/Rock3.png</path>
+                <path>src/Sprites/Tiles/Autumn/Earth_Rock_2.png</path>
             </sprite>
         </group>
     </Tiles>

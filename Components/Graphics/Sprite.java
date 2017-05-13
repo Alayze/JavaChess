@@ -54,7 +54,7 @@ public class Sprite implements Drawable {
         try {
             image = ImageIO.read(imageFile);
         }catch (IOException e){
-            System.out.print(e.getMessage());
+            System.out.print(e.getMessage() + " " + path);
         }
 
     }

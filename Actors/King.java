@@ -8,7 +8,7 @@ import java.awt.*;
  * Created by dimaer on 27/03/17.
  */
 public class King extends Pawn {
-    public King(Cell cell) {
-        super(cell);
+    public King(Cell cell, Team.TEAMTYPE teamtype) {
+        super(cell,teamtype);
     }
 }

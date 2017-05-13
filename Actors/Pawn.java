@@ -18,6 +18,7 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
     private Sprite sprite;
     private Cell current_cell;
     private Team.TEAMTYPE team;
+    public Pawn(){};
     public Pawn(Cell cell, Team.TEAMTYPE team)
     {
         super(cell.getPosition());
@@ -27,7 +28,7 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
 
     }
     protected void setSprite(String id){
-        sprite.setImage(ResourceLoader.getInstance().LoadSprite("1","sprite"));
+        sprite.setImage(ResourceLoader.getInstance().LoadSprite("1","Pawn"));
     }
     /**
      * Metodo che sposta la piedina

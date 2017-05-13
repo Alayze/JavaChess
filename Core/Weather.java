@@ -3,11 +3,9 @@ package Core;
 /**
  * Created by dimaer on 31/03/17.
  */
-public class Weather {
+public final class Weather {
     private WEATHER_TYPE currentType;
-    private Weather(){
-
-    }
+    private Weather(){}
 
     private static Weather weather = new Weather();
 

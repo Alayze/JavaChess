@@ -10,6 +10,7 @@ import java.awt.*;
 public class GameObject{
     Point position;
     Rectangle boundRect;
+    public GameObject(){};
     public GameObject(Point position)
     {
         this.position = position;

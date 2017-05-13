@@ -95,8 +95,8 @@ public class Screen extends Canvas{
         super.paint(graphics);
         setBackground(new Color(255,255,255,255));
         //sprite.draw(graphics);
-        //board.draw(graphics);
-        sceneManager.setCurrentScene(Scene.SCENE_TYPE.MAIN_MENU);
+        board.draw(graphics);
+        sceneManager.setCurrentScene(Scene.SCENE_TYPE.RUNNED_GAME);
         //pawn.draw(graphics);
         //Log.getInstance().showDepth(graphics,board.getCells());
         //Log.getInstance().showOrigins(graphics,pawn.getSprite());

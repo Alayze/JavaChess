@@ -2,7 +2,9 @@ package Terrain;
 
 import Components.Graphics.Drawable;
 import Core.GameObject;
+import Core.ResourceLoader;
 import Core.Screen;
+import Core.WheaterObserver;
 
 
 import java.awt.*;
@@ -12,7 +14,7 @@ import java.util.ArrayList;
  * Classe che descrive il tavolo da gioco
  * Created by dimaer on 27/03/17.
  */
-public class Board extends GameObject implements Drawable {
+public class Board extends GameObject implements Drawable, WheaterObserver {
     ArrayList<Cell> cells;
     Screen screen;
     public Board(Point position,Screen screen) {
@@ -22,6 +24,11 @@ public class Board extends GameObject implements Drawable {
         generateBoard(position);
     }
 
+    @Override
+    public void setSprite() {
+
+    }
+
     /**
      * Metodo che costruisce il tavolo di gioco
      */
@@ -29,26 +36,30 @@ public class Board extends GameObject implements Drawable {
         int offsetX = 0;
         int offsetY = 0;
         //Template e' un livelo preimpostato
-        String template = "X0X0X0X0" +
+        /*String template = "X0X0X0X0" +
                           "0X0X0X0X" +
                           "X0X0X0X0" +
                           "0X0X0X0X" +
                           "X0X0X0X0" +
                           "0X0X0X0X" +
                           "X0X0X0X0" +
-                          "0X0X0X0X";
-        String spriteType;
+                          "0X0X0X0X";*/
+        String template = ResourceLoader.getInstance().loadLevel("2");
+        String spriteType = "";
         Cell.Type cellType;
 
         for(int i = 0;i<64;i++)
         {
-            if(template.charAt(i)=='X'){
+            /*if(template.charAt(i)=='X'){
                 spriteType = "Earth_Rock_1";
                 cellType = Cell.Type.TYPE1;
             }else{
                 spriteType = "Earth_Grass_1";
                 cellType = Cell.Type.TYPE2;
-            }
+            }*/
+
+            spriteType = ResourceLoader.getInstance().checkAnnotation(template.charAt(i));
+            cellType = Cell.Type.TYPE1;
             if(i % 8 == 0)
             {
                 offsetY+=43; //E' bruto , bisogna incapsulare
