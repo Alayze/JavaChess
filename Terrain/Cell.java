@@ -5,7 +5,6 @@ import Components.Graphics.Drawable;
 import Components.Graphics.Sprite;
 import Core.GameObject;
 import Core.ResourceLoader;
-import Core.Weather;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -14,9 +13,11 @@ import java.awt.event.MouseEvent;
  * Created by dimaer on 27/03/17.
  */
 public class Cell extends GameObject implements Drawable,MouseObserver{
+
     private Sprite sprite;
     private Type type;
     private String spriteType;
+
     public Cell(Point position, String spriteType, String weatherType){
         super(position);
         this.spriteType=spriteType;

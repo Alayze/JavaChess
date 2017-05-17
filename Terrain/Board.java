@@ -18,14 +18,14 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
 
     public Board(Point position,Weather weather) {
         super(position);
-        this.position=position;
+        this.position = position;
         this.weather = weather;
         weather.addWeatherObserver(this);//iscrizione di scachierra sulle notifiche de Weather
         cells = new ArrayList<>();
         generateBoard(position);
         System.out.println(weather.getWeather().toString());
     }
-
+    /**Metodo che aggiorna oservatori di Weather*/
     @Override
     public void setSprite() {
        for (Cell c : cells){
