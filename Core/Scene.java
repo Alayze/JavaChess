@@ -26,13 +26,8 @@ public abstract class Scene {
     public abstract void Init();
     public abstract void Update();
 
-    public Scene(){elements = new ArrayList<Drawable>();Init();}
+    public Scene(){elements = new ArrayList<>();Init();}
 
-    /*public Scene(SCENE_TYPE sceneType)
-    {
-        this.sceneType = sceneType;
-        elements = new ArrayList<Drawable>();
-    }*/
 
     public void addElement(Drawable element)
     {

@@ -20,7 +20,7 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
         super(position);
         this.position=position;
         this.weather = weather;
-        weather.addWeatherObserver(this);
+        weather.addWeatherObserver(this);//iscrizione di scachierra sulle notifiche de Weather
         cells = new ArrayList<>();
         generateBoard(position);
         System.out.println(weather.getWeather().toString());
@@ -32,8 +32,6 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
             c.getSprite().setImage(ResourceLoader.getInstance().LoadTile(weather.getWeather().toString(),c.getSpriteType()));
         }
 
-       //cells.clear();
-       //generateBoard(position);
     }
     /**
      * Metodo che costruisce il tavolo di gioco

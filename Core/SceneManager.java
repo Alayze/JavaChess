@@ -1,7 +1,5 @@
 package Core;
 
-import Core.Scene;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,7 @@ public class SceneManager {
     private Scene currentScene;
 
     public SceneManager(){
-        scenes = new ArrayList<Scene>();
+        scenes = new ArrayList<>();
     }
 
     /**
@@ -34,11 +32,7 @@ public class SceneManager {
      * @param scene Tipo di scena
      */
     public void setCurrentScene(Scene scene){
-        /*for (Scene s : scenes){
-            if(s.getSceneType()==scene){
-                currentScene = s;
-            }
-        }*/
+
         currentScene = scene;
     }
 
@@ -48,10 +42,7 @@ public class SceneManager {
      */
     public void draw(Graphics graphics)
     {
-        /*for (Scene s : scenes)
-        {
-            s.draw(graphics);
-        }*/
+
         currentScene.draw(graphics);
     }
 }

@@ -2,7 +2,7 @@ package Core;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -10,7 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 /**
- * Classe che carica le resource
+ * Classe che carica le resource facendo parsing dei file resource.xml e levels.xml
  * Created by dimaer on 27/03/17.
  */
 public final class ResourceLoader {
@@ -20,6 +20,7 @@ public final class ResourceLoader {
     private DocumentBuilder dBuilder;
     private Document documentRes;
     private Document documentLevel;
+
 
     private ResourceLoader(){
         resourceFile = new File("src/Resources.xml");
@@ -39,30 +40,17 @@ public final class ResourceLoader {
 
     /**
      * Metodo che torna l'istanza della classe
-     * @return
+     * @return ResourceLoader
      */
     public static ResourceLoader getInstance(){
         return resourceLoader;
     }
 
-
-    /*public String LoadResource(String id,String type)
-    {
-        NodeList nodeList = documentRes.getElementsByTagName(type);
-        for(int i = 0; i < nodeList.getLength();i++){
-            Element element = (Element) nodeList.item(i);
-            if(element.getAttribute("id").equals(id))
-                return element.getElementsByTagName("path").item(0).getTextContent();
-
-        }
-            return "Error for load resource\n";
-    }*/
-
     /**
-     *
-     * @param weatherType
-     * @param id
-     * @return
+     * Metodo che cerca il path nella cartela di applicazione di immagini definiti nella cartela resource.xml
+     * @param weatherType stagione
+     * @param id nome di sprite
+     * @return path del file
      */
     public String LoadTile(String weatherType,String id)
     {
@@ -96,15 +84,12 @@ public final class ResourceLoader {
         System.out.print("Error for load tile: " + weatherType + " " + id + "\n");
         return "";
     }
-    /*private boolean checkDocument(){
-        documentRes.getDocumentURI();
-    }*/
 
     /**
-     *
-     * @param Team
-     * @param id
-     * @return
+     *  Metodo che cerca path dei sprite considerati
+     * @param Team tipo di squadra
+     * @param id nome di sprite
+     * @return path del file
      */
     public String LoadSprite(String Team,String id)
     {
@@ -143,16 +128,15 @@ public final class ResourceLoader {
     }
 
     /**
-     *
-     * @param text
-     * @return
+     *  Metodo che decodifica la stringa che contiene il livelo nel file levels.xml
+     * @param text simbolo
+     * @return nome del sprite decodificato nel simbolo
      */
     public String checkAnnotation(char text)
     {
         //<Annotations>
         NodeList annotations = documentRes.getElementsByTagName("Annotations");
-        //for(int i = 0; i < annotations.getLength();i++)
-        //{
+
             Element annotationsRoot = (Element) annotations.item(0);
             //<annotation>
             NodeList annotationList = annotationsRoot.getElementsByTagName("annotation");
@@ -167,10 +151,16 @@ public final class ResourceLoader {
                 }
             }
 
-        //}
+
         System.out.print("Not found annotation: " + text + "\n");
         return "";
     }
+
+    /**
+     * Carica la stringa con livello dal file levels.xml
+     * @param id identificativo di livello
+     * @return stringa contenente il livello codificato
+     */
     public String loadLevel(String id){
             //<Levels>
             Element root = (Element) documentLevel.getElementsByTagName("Levels").item(0);
@@ -190,6 +180,12 @@ public final class ResourceLoader {
         System.out.print("Not found level:" + id + "\n");
         return "";
     }
+
+    /**
+     * Metodo che formatta la string eliminando gli spazi vuoti
+     * @param string testo da formattare
+     * @return stringa formattata
+     */
     private String formatString(String string){
         String temp = "";
         for(int i = 0;i<string.length();i++){

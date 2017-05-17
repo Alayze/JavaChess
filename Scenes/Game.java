@@ -11,9 +11,6 @@ import java.awt.*;
  */
 public final class Game extends Scene {
     Board board;
-    /*public Game(SCENE_TYPE sceneType) {
-        super(sceneType);
-    }*/
 
     @Override
     public void Init() {
