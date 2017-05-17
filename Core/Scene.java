@@ -13,7 +13,7 @@ import java.util.List;
  *
  */
 
-public class Scene {
+public abstract class Scene {
 
     private List<Drawable> elements;
     SCENE_TYPE sceneType;
@@ -23,16 +23,17 @@ public class Scene {
     public enum SCENE_TYPE {
         MAIN_MENU,OPTIONS,STATS,RUNNED_GAME
     }
+    public abstract void Init();
+    public abstract void Update();
 
-    /**
-     * Costruisce il contenitore
-     * @param sceneType il tipo di scena
-     */
-    public Scene(SCENE_TYPE sceneType)
+    public Scene(){elements = new ArrayList<Drawable>();Init();}
+
+    /*public Scene(SCENE_TYPE sceneType)
     {
         this.sceneType = sceneType;
         elements = new ArrayList<Drawable>();
-    }
+    }*/
+
     public void addElement(Drawable element)
     {
         elements.add(element);
@@ -45,7 +46,9 @@ public class Scene {
     {
         return sceneType;
     }
-
+    public void setSceneType(SCENE_TYPE sceneType){
+        this.sceneType = sceneType;
+    }
     /**
      * Disegna tutti i elementi che stanno dentro il contenitore
      * @param graphics l'oggetto che si occupa di operazioni grafiche

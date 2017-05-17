@@ -9,6 +9,7 @@ import Components.Event.MouseObserver;
 import Components.Graphics.Gui.*;
 import Components.Graphics.Gui.Button;
 import Components.Graphics.Sprite;
+import Scenes.Game;
 import Terrain.Board;
 import Utils.Log;
 
@@ -18,6 +19,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Screen extends Canvas{
     private int width,height;
@@ -25,8 +28,9 @@ public class Screen extends Canvas{
 
     SceneManager sceneManager;
     Scene mainMenu;
-    Scene game;
+    Game game;
     Board board;
+    Timer timer;
     @Override
     public synchronized void addMouseListener(MouseListener mouseListener) {
         super.addMouseListener(mouseListener);
@@ -35,16 +39,27 @@ public class Screen extends Canvas{
     public Screen(int Width, int Height)
     {
         initMouseListeners();
-        game = new Scene(Scene.SCENE_TYPE.RUNNED_GAME);
-        mainMenu = new Scene(Scene.SCENE_TYPE.MAIN_MENU);
+        game = new Game();
+        /*game = new Scene(Scene.SCENE_TYPE.RUNNED_GAME);
+        mainMenu = new Scene(Scene.SCENE_TYPE.MAIN_MENU);*/
         sceneManager = new SceneManager();
+        sceneManager.addScene(game);
+        sceneManager.setCurrentScene(game);
         observers = new ArrayList<>();
         //mainMenu.addElement();
-        board = new Board(new Point(400,-200),this);
-        game.addElement(board);
+        //board = new Board(new Point(400,-200),this,new Weather(Weather.WEATHER_TYPE.Summer));
+        //game.addElement(board);
         //pawn = new Pawn(board.getCells().get(0));
         width= Width;
         height = Height;
+        timer=new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                repaint();
+
+            }
+        },1*1000,1*1000);
         //button = new Button();
         //sprite = new Sprite(new Point(0,0));
         //sprite.setImage(ResourceLoader.getInstance().LoadResource("Earth_Grass_3","sprite"));
@@ -61,7 +76,7 @@ public class Screen extends Canvas{
             }
         });*/
     }
-
+    /**Определить как concrete class*/
     private void initMouseListeners()
     {
         addMouseListener(new MouseAdapter() {
@@ -81,7 +96,9 @@ public class Screen extends Canvas{
         });
 
     }
+    private void initScenes(){
 
+    }
     private void NotifyObservers(MouseEvent mouseEvent , String message)
     {
         for(MouseObserver observer : observers)
@@ -92,11 +109,12 @@ public class Screen extends Canvas{
 
     @Override
     public void paint(Graphics graphics) {
+
         super.paint(graphics);
         setBackground(new Color(255,255,255,255));
         //sprite.draw(graphics);
-        board.draw(graphics);
-        sceneManager.setCurrentScene(Scene.SCENE_TYPE.RUNNED_GAME);
+        //board.draw(graphics);
+        sceneManager.draw(graphics);
         //pawn.draw(graphics);
         //Log.getInstance().showDepth(graphics,board.getCells());
         //Log.getInstance().showOrigins(graphics,pawn.getSprite());

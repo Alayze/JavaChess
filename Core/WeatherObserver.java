@@ -3,6 +3,6 @@ package Core;
 /**
  * Created by dimaer on 05/04/17.
  */
-public interface WheaterObserver {
+public interface WeatherObserver {
     void setSprite();
 }

@@ -33,12 +33,13 @@ public class SceneManager {
      * Funzione che imposta la scena corrente
      * @param scene Tipo di scena
      */
-    public void setCurrentScene(Scene.SCENE_TYPE scene){
-        for (Scene s : scenes){
+    public void setCurrentScene(Scene scene){
+        /*for (Scene s : scenes){
             if(s.getSceneType()==scene){
                 currentScene = s;
             }
-        }
+        }*/
+        currentScene = scene;
     }
 
     /**
@@ -47,9 +48,10 @@ public class SceneManager {
      */
     public void draw(Graphics graphics)
     {
-        for (Scene s : scenes)
+        /*for (Scene s : scenes)
         {
             s.draw(graphics);
-        }
+        }*/
+        currentScene.draw(graphics);
     }
 }

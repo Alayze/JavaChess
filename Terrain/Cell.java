@@ -5,6 +5,7 @@ import Components.Graphics.Drawable;
 import Components.Graphics.Sprite;
 import Core.GameObject;
 import Core.ResourceLoader;
+import Core.Weather;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -15,12 +16,13 @@ import java.awt.event.MouseEvent;
 public class Cell extends GameObject implements Drawable,MouseObserver{
     private Sprite sprite;
     private Type type;
-
-    public Cell(Point position,String spriteType){
+    private String spriteType;
+    public Cell(Point position, String spriteType, String weatherType){
         super(position);
+        this.spriteType=spriteType;
         sprite = new Sprite(position);
         System.out.print(getClass().toString() + ":[spriteType: " + spriteType + "]\n");
-        sprite.setImage(ResourceLoader.getInstance().LoadTile("Summer",spriteType));
+        sprite.setImage(ResourceLoader.getInstance().LoadTile(weatherType,spriteType));
     }
     //Enumerazione che contiene dei valori di tipo di cella (il colore sulla scacchiera)
     enum Type{
@@ -35,7 +37,7 @@ public class Cell extends GameObject implements Drawable,MouseObserver{
     {
         this.type = type;
     }
-
+    public String getSpriteType(){return spriteType;}
     /**
      *
      * @return
