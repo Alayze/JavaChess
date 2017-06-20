@@ -18,6 +18,7 @@ public final class Weather {
         weatherObservers = new ArrayList<>();
         currentType = weather;
 
+        /*Aggironamento di stagione*/
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -30,7 +31,7 @@ public final class Weather {
     }
 
     /**
-     * Metodo che porta le notifiche ai oservatori
+     * Metodo che porta le notifiche ad oservatori
      */
     public void notifyObservers(){
             for(WeatherObserver w : weatherObservers)

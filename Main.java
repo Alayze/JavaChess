@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        Screen screen = new Screen(1024,768);
+        Screen screen = new Screen();
         System.out.print("Program Started");
 
         Frame mainFrame = new Frame("ChessGame");
@@ -19,7 +19,7 @@ public class Main {
 
 
 
-        mainFrame.setSize(800,600);
+        mainFrame.setSize(1024,768);
         mainFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {

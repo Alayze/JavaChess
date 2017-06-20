@@ -11,15 +11,24 @@ import Components.Graphics.Drawable;
 public class Button implements Drawable,MouseObserver {
     private Rectangle boundRect;
     private MouseListener mouseListener;
+    private String label;
     /**
      * Costruttore
      * @param BoundRect Dimensioni di rettangolo
      */
-    public Button(Rectangle BoundRect)
+    public Button(Rectangle BoundRect,String label)
     {
         boundRect = BoundRect;
+        this.label=label;
     }
 
+    /**
+     *
+     * @param label
+     */
+    public void setLabel(String label){
+
+    }
     /**
      * Metodo che imposta le dimensioni di rettangolo
      * @param BoundRect Dimensioni di rettangolo
@@ -73,5 +82,8 @@ public class Button implements Drawable,MouseObserver {
     @Override
     public void draw(Graphics graphics) {
         graphics.drawRect(boundRect.x,boundRect.y,boundRect.width,boundRect.height);
+        FontMetrics fm = graphics.getFontMetrics();
+
+        graphics.drawString(label,boundRect.x + boundRect.width/2 - fm.stringWidth(label)/2,boundRect.y + boundRect.height/2 + fm.getHeight()/2);
     }
 }

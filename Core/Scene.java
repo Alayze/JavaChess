@@ -26,12 +26,27 @@ public abstract class Scene {
     public abstract void Init();
     public abstract void Update();
 
-    public Scene(){elements = new ArrayList<>();Init();}
+    public Scene(){observers = new ArrayList<>();elements = new ArrayList<>();Init();}
 
+    /**
+     *
+     * @return
+     */
+    public ArrayList<MouseObserver> getObservers(){
+        return observers;
+    }
 
+    /**
+     *
+     * @param element
+     */
     public void addElement(Drawable element)
     {
         elements.add(element);
+        if(element instanceof MouseObserver){
+            observers.add((MouseObserver) element); //Se element anche e' instance di MouseObserver
+            // allora faccio cast
+        }
     }
     /**
      * Metodo che torna il tipo di scena
@@ -41,6 +56,7 @@ public abstract class Scene {
     {
         return sceneType;
     }
+
     public void setSceneType(SCENE_TYPE sceneType){
         this.sceneType = sceneType;
     }

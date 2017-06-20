@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Board extends GameObject implements Drawable, WeatherObserver {
     ArrayList<Cell> cells;
+    Cell convertedCells [][];
     Weather weather;
     private Point position;
 
@@ -22,8 +23,10 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
         this.weather = weather;
         weather.addWeatherObserver(this);//iscrizione di scachierra sulle notifiche de Weather
         cells = new ArrayList<>();
+        convertedCells = new Cell[8][8];
         generateBoard(position);
         System.out.println(weather.getWeather().toString());
+
     }
     /**Metodo che aggiorna oservatori di Weather*/
     @Override
@@ -61,9 +64,37 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
             cells.get(i).getSprite().setDepth(i);
             cells.get(i).setType(cellType);
             offsetX+=43; //E' bruto , bisogna incapsulare
+
+        }
+        convertArray();
+    }
+
+    /**
+     * Funzione che converte Array in array bidimensionale
+     */
+    private void convertArray(){
+        int count = 0;
+        for (int x = 0;x<8;x++){
+            for(int y = 0;y<8;y++){
+                //System.out.println(count);
+                convertedCells[x][y] = cells.get(count);
+                count++;
+            }
         }
     }
 
+    /**
+     * Funzione che torna la cella di scachiera che e' contenuta nell array bidimensionale
+     * @param x posizione orizzontale
+     * @param y posizione verticale
+     * @return cella di scachiera
+     */
+    public Cell getCell(int x ,int y){
+        if(x <=7 || y<=7)
+            return convertedCells[x][y];
+        else
+            return null;
+    }
     private ArrayList<Cell> inverseMatrix()
     {
         ArrayList<Cell> inverseCells = new ArrayList<>();

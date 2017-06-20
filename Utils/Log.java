@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by dimaer on 29/03/17.
  */
-public class Log {
+public final class Log {
     private Log()
     {
 
@@ -33,6 +33,7 @@ public class Log {
         }
 
     }
+
     public void showOrigins(Graphics graphics,Sprite sprite)
     {
         //for(Drawable d : objects){

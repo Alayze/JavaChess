@@ -1,21 +1,34 @@
 package Core;
 
+import Components.Event.MouseObserver;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by dimaer on 20/03/17.
  * La classe Core.SceneManager si occupa della gestione delle varie scene.Core.SceneManager ha il potere di cambiare
  * le scene da rappresentare.
  */
-public class SceneManager {
+public final class SceneManager {
 
-    private List<Scene> scenes;
+    private ArrayList<Scene> scenes;
     private Scene currentScene;
 
-    public SceneManager(){
+    private SceneManager(){
         scenes = new ArrayList<>();
+    }
+
+    private static final SceneManager sceneManager = new SceneManager();
+
+    /**
+     * Metodo che torna l'istanza della classe
+     * @return instanza di SceneManager
+     */
+    public static SceneManager getInstance(){
+        return sceneManager;
     }
 
     /**
@@ -36,6 +49,30 @@ public class SceneManager {
         currentScene = scene;
     }
 
+    /**
+     * Metodo
+     * @param sceneType
+     */
+    public void setCurrentScene(Scene.SCENE_TYPE sceneType){
+        for (Scene scene : scenes){
+            if(scene.getSceneType()==sceneType){
+                currentScene=scene;
+                return;
+            }
+
+        }
+    }
+    public ArrayList<Scene> getScenes(){
+        return scenes;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public ArrayList<MouseObserver> getObservers(){
+        return currentScene.getObservers();
+    }
     /**
      * Funzione che disegna la scena
      * @param graphics

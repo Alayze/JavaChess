@@ -18,7 +18,7 @@ public class Pawn extends GameObject implements Drawable, MouseObserver {
     private Sprite sprite;
     private Cell current_cell;
     private Team.TEAMTYPE team;
-    public Pawn(){};
+    public Pawn(){}
     public Pawn(Cell cell, Team.TEAMTYPE team)
     {
         super(cell.getPosition());
