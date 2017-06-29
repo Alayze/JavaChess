@@ -20,13 +20,7 @@ public class Sprite implements Drawable {
     private BufferedImage image;
     private File imageFile;
     private int depth;
-    private ImageObserver imageObserver = new ImageObserver() {
-            @Override
-            public boolean imageUpdate(Image image, int i0, int i1, int i2, int i3, int i4) {
-                return false;
-
-            }
-        };
+    private ImageObserver imageObserver ;
 
     /**
      *Funzione che torna file di immagine
@@ -44,6 +38,14 @@ public class Sprite implements Drawable {
     public Sprite(Point position)
     {
         this.position = position;
+
+        imageObserver = new ImageObserver() {
+            @Override
+            public boolean imageUpdate(Image image, int i0, int i1, int i2, int i3, int i4) {
+                return false;
+
+            }
+        };
     }
 
     /**
@@ -69,14 +71,15 @@ public class Sprite implements Drawable {
     public Point getPosition() {
         return position;
     }
-
+    public void setPosition(Point vector){position = vector;}
     /**
      * Il metodo che calcola le coordinate del centro di sprite rispetto all'immagine
      * @return Point vettore dell centro
      */
     public Point getCenter(){
         Point imageCenter = new Point(image.getWidth(imageObserver)/2,image.getHeight(imageObserver)/2);
-        return new Point(position.x + imageCenter.x,position.y + imageCenter.y);
+
+        return new Point(position.x + imageCenter.x,position.y + imageCenter.y - 20);
     }
 
     /**

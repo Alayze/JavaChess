@@ -2,10 +2,12 @@ package Terrain;
 
 import Components.Graphics.Drawable;
 import Core.*;
+import Utils.Log;
 
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Classe che descrive il tavolo da gioco
@@ -76,7 +78,6 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
         int count = 0;
         for (int x = 0;x<8;x++){
             for(int y = 0;y<8;y++){
-                //System.out.println(count);
                 convertedCells[x][y] = cells.get(count);
                 count++;
             }
@@ -94,6 +95,12 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
             return convertedCells[x][y];
         else
             return null;
+    }
+    public Cell getCell(int n,char ch){
+
+            //for(int y = 0;y<8;y++) {
+              return  convertedCells[n][ch - 97];
+            //}
     }
     private ArrayList<Cell> inverseMatrix()
     {
@@ -137,6 +144,7 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
     public void draw(Graphics graphics) {
         for (Cell c : cells){
             c.draw(graphics);
+            //Log.getInstance().showOrigins(graphics,c.getSprite());
         }
     }
 }

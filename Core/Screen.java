@@ -8,6 +8,7 @@ package Core;
 import Components.Event.MouseObserver;
 import Scenes.Game;
 import Scenes.MainMenu;
+import Utils.Log;
 
 
 import java.awt.*;
@@ -92,6 +93,7 @@ public class Screen extends Canvas{
         setBackground(new Color(255,255,255,255));
 
         sceneManager.draw(graphics);
+
     }
     /**Definire come concrete class*/
     private void initMouseListeners()

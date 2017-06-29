@@ -25,7 +25,7 @@ public final class Weather {
             public void run() {
                 switchWeather();
                 notifyObservers();
-                System.out.print(currentType.toString()+"\n");
+                //System.out.print(currentType.toString()+"\n");
             }
         },5*1000,5*1000);
     }

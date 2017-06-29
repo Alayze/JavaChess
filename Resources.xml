@@ -23,7 +23,7 @@
     <Actors>
         <team id="Red">
             <sprite id="Pawn">
-                <path>src/Sprites/Chess/Pawn1.png</path>
+                <path>src/Sprites/Chess/Pawn.png</path>
             </sprite>
             <sprite id="King">
                 <path></path>
@@ -43,19 +43,19 @@
         </team>
         <team id="Blue">
             <sprite id="Pawn">
-                <path>src/Sprites/Chess/Pawn1.png</path>
+                <path>src/Sprites/Chess/Pawn.png</path>
             </sprite>
             <sprite id="King">
-                <path></path>
+                <path>src/Sprites/Chess/King.png</path>
             </sprite>
             <sprite id="Queen">
-                <path></path>
+                <path>src/Sprites/Chess/Queen.png</path>
             </sprite>
             <sprite id="Rook">
                 <path>src/Sprites/Chess/Rook.png</path>
             </sprite>
             <sprite id="Knight">
-                <path></path>
+                <path>src/Sprites/Chess/Knight.png</path>
             </sprite>
             <sprite id="Bishop">
                 <path>src/Sprites/Chess/Bishop.png</path>
