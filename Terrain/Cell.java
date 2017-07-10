@@ -15,9 +15,10 @@ public class Cell extends GameObject {
     private Sprite spriteOutline;
 
     private Type type;
-
+    private Color colorFill;
+    private Color attackColor;
     private String spriteType;
-
+    private boolean atackable;
     /**
      *
      * @param position
@@ -26,7 +27,10 @@ public class Cell extends GameObject {
      */
     public Cell(Point position, String spriteType, String weatherType){
         super(position);
+        atackable=false;
         setActive(false);
+        colorFill = new Color(0,0,0,100);
+        attackColor = new Color(200,0,0,200);
         this.spriteType = spriteType;
         spriteOutline = new Sprite(position);
         //sprite = new Sprite(position);
@@ -69,6 +73,22 @@ public class Cell extends GameObject {
      */
     public String getSpriteType(){return spriteType;}
 
+    /**
+     *
+     * @param atackable
+     */
+    public void setAtackable(boolean atackable) {
+        this.atackable = atackable;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isAtackable() {
+        return atackable;
+    }
+
     @Override
     public void update(MouseEvent mouseEvent) {
         super.update(mouseEvent);
@@ -81,9 +101,17 @@ public class Cell extends GameObject {
             super.draw(graphics);
             spriteOutline.draw(graphics);
         }
-        if(isActive())
-        graphics.fillOval(getSprite().getCenter().x-20,getSprite().getCenter().y,40,25);
-        graphics.drawString(" " + getCoord().x + "," + getCoord().y,getSprite().getCenter().x-5,getSprite().getCenter().y+20);
+        if(isActive()) {
+
+            graphics.setColor(colorFill);
+
+            if(isAtackable())
+                graphics.setColor(attackColor);
+
+            graphics.fillOval(getSprite().getCenter().x - 20, getSprite().getCenter().y, 40, 25);
+            graphics.setColor(new Color(0,0,0));
+        }
+       // graphics.drawString(" " + getCoord().x + "," + getCoord().y,getSprite().getCenter().x-5,getSprite().getCenter().y+20);
         //graphics.drawString(" " + ,getSprite().getCenter().x-5,getSprite().getCenter().y+20);
     }
 }
