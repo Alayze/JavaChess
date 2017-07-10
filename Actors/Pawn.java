@@ -1,5 +1,6 @@
 package Actors;
 
+import Terrain.Board;
 import Terrain.Cell;
 
 import java.awt.*;
@@ -10,26 +11,27 @@ import java.awt.*;
  */
 public class Pawn extends Piece {
 
-    private Team.TEAMTYPE team;
-
-
     public Pawn(){}
 
-    public Pawn(Cell cell, Team.TEAMTYPE team)
+    public Pawn(Cell cell, Team.TEAMTYPE teamtype)
     {
-        super(cell);
-        setOrigin(new Point(-50,-75));
-        Point position = new Point(getOrigin().x + cell.getSprite().getCenter().x,
-                                  getOrigin().y + cell.getSprite().getCenter().y);
+        super(cell,teamtype);
+
+        getSprite().setOrigin(new Point(-50,-75));
+        Point position = new Point(getSprite().getOrigin().x + cell.getSprite().getCenter().x,
+                getSprite().getOrigin().y + cell.getSprite().getCenter().y);
         getSprite().setPosition(position);
-        this.team = team;
-        setSprite(team.toString(),"Pawn");
+
+        setSprite(teamtype.toString(),"Pawn");
     }
 
 
     @Override
     public void Move(Cell cell) {
-
+        setCurrentCell(cell);
+        Point position = new Point(getSprite().getOrigin().x + cell.getSprite().getCenter().x,
+                getSprite().getOrigin().y + cell.getSprite().getCenter().y);
+        getSprite().setPosition(position);
     }
 
     @Override
@@ -37,7 +39,7 @@ public class Pawn extends Piece {
 
     }
 
-   /* @Override
+    /* @Override
     public void draw(Graphics graphics) {
         sprite.draw(graphics);
     }

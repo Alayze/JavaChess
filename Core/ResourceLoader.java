@@ -72,7 +72,7 @@ public final class ResourceLoader {
                     Element sprite = (Element) sprites.item(sprite_count);
 
                     if(sprite.getAttribute("id").equals(id)){
-                        System.out.print("Load_Tile: [OK : " + sprite.getElementsByTagName("path").item(0).getTextContent() + "]" + "\n");
+                        //System.out.print("Load_Tile: [OK : " + sprite.getElementsByTagName("path").item(0).getTextContent() + "]" + "\n");
                         String template = sprite.getElementsByTagName("path").item(0).getTextContent();
                         //return sprite.getElementsByTagName("path").item(0).getTextContent();
                         //System.out.print(template + "\n");
@@ -81,7 +81,7 @@ public final class ResourceLoader {
                 }
             }
         }
-        System.out.print("Error for load tile: " + weatherType + " " + id + "\n");
+        System.out.println("Error for load tile: " + weatherType + " " + id + "\n");
         return "";
     }
 
@@ -123,7 +123,7 @@ public final class ResourceLoader {
             }
 
         }
-        System.out.print("Error for load resource: " + Team + " " + id + "\n");
+        System.out.println("Error for load resource: " + Team + " " + id + "\n");
         return "";
     }
 
@@ -172,7 +172,7 @@ public final class ResourceLoader {
 
                 if(level.getAttribute("id").equals(id)){
                     String levelTemplate = level.getTextContent();
-                    System.out.print(formatString(levelTemplate));
+                    //System.out.print(formatString(levelTemplate));
                     return formatString(levelTemplate);
                 }
             }

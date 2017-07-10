@@ -1,7 +1,5 @@
 package Actors;
 
-import Components.Event.MouseObserver;
-import Components.Graphics.Drawable;
 import Components.Graphics.Sprite;
 import Core.GameObject;
 import Core.ResourceLoader;
@@ -13,16 +11,33 @@ import java.awt.event.MouseEvent;
 /**
  * Created by dimaer on 21/06/17.
  */
-public abstract class Piece extends GameObject implements Drawable,MouseObserver {
+public abstract class Piece extends GameObject{
 
-    private Sprite sprite;
-    private Point origin;
-    private Cell current_cell;
+    //private Sprite sprite;
+    private Sprite spriteOutline;
+
+    //private boolean selected;
+
+    private Cell currentCell;
+
+    //private Color color;
+    private Team.TEAMTYPE team;
 
     public Piece(){}
-    public Piece(Cell cell){
-        sprite = new Sprite(cell.getPosition());
-        current_cell = cell;
+    public Piece(Cell cell, Team.TEAMTYPE team){
+        //selected = false;
+        super(cell.getPosition());
+        this.team = team;
+        name = "PIECE";
+        //sprite = new Sprite(cell.getPosition());
+        spriteOutline = new Sprite(cell.getPosition());
+        spriteOutline.setVisibility(false);
+        currentCell = cell;
+
+        getSprite().setDepth(getCurrentCell().getSprite().getDepth());
+        getSpriteOutline().setDepth(getCurrentCell().getSprite().getDepth());
+        //mouse = new Point();
+        //color = new Color(255,255,255);
     }
 
     /**
@@ -32,36 +47,80 @@ public abstract class Piece extends GameObject implements Drawable,MouseObserver
     public abstract void Move(Cell cell);
     public abstract void Die();
 
-    public void setOrigin(Point vector){
-        origin = vector;
+    public void setCurrentCell(Cell currentCell) {
+        this.currentCell = currentCell;
     }
 
-    public Point getOrigin(){
-        return origin;
+    public Cell getCurrentCell() {
+        return currentCell;
     }
 
-    public Cell getCell()
-    {
-        return current_cell;
+    public Team.TEAMTYPE getTeam() {
+        return team;
+    }
+    /*public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
-    public Sprite getSprite()
+    public boolean isSelected() {
+        return selected;
+    }
+*/
+    /*public Sprite getSprite()
     {
         return sprite;
     }
-
-    protected void setSprite(String Team,String id){
+*/
+  /*  protected void setSprite(String Team,String id){
         sprite.setImage(ResourceLoader.getInstance().LoadSprite(Team,id));
+    }*/
+
+    @Override
+    public void setPosition(Point position) {
+        super.setPosition(position);
+        spriteOutline.setPosition(position);
     }
 
+    protected void setSpriteOutline(String Team, String id){
+        spriteOutline.setImage(ResourceLoader.getInstance().LoadSprite(Team,id));
+    }
+    public Sprite getSpriteOutline(){
+        return spriteOutline;
+    }
 
     @Override
     public void draw(Graphics graphics) {
-        sprite.draw(graphics);
+        //sprite.draw(graphics);
+        if(isVisibility()){
+            super.draw(graphics);
+            spriteOutline.draw(graphics);
+        }
+         //graphics.drawString(mouse.toString(),mouse.x,mouse.y);
+        /*if(perPixelCollision(new Point(mouse.x,mouse.y)))
+            graphics.setColor(new Color(100,0,0));
+        else
+            graphics.setColor(new Color(0,0,0,0));
+
+        graphics.fillRect(getSprite().getPosition().x,getSprite().getPosition().y,
+                getSprite().getImage().getWidth(),
+                getSprite().getImage().getHeight());*/
+        //graphics.drawString(" " + (mouse.y - getSprite().getPosition().y),getSprite().getPosition().x,getSprite().getPosition().y);
     }
 
     @Override
-    public void update(MouseEvent mouseEvent, String message) {
+    public void setSelected(boolean selected) {
+        super.setSelected(selected);
+        spriteOutline.setVisibility(selected);
+    }
 
+    @Override
+    public void update(MouseEvent mouseEvent) {
+        super.update(mouseEvent);
+        if(isSelected()){
+            spriteOutline.setVisibility(true);
+        }
+        else {
+            spriteOutline.setVisibility(false);
+        }
     }
 }

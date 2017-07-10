@@ -41,17 +41,17 @@ public class Button implements Drawable,MouseObserver {
     /**
      * Metodo che aggiorna il componente quando esso riceve il messagio (L'evento)
      * @param mouseEvent L'evento di mouse
-     * @param message messagio di evento
+     *
      */
     @Override
-    public void update(MouseEvent mouseEvent, String message) {
-        if(message.equals("MOUSE_CLICKED"))
+    public void update(MouseEvent mouseEvent) {
+        if(mouseEvent.getID()==MouseEvent.MOUSE_CLICKED)
         {
             if(isContainMouse(mouseEvent))
             mouseListener.mouseClicked(mouseEvent);
 
         }
-        if(message.equals("MOUSE_MOVED"))
+        if(mouseEvent.getID()==MouseEvent.MOUSE_MOVED)
         {
             if(isContainMouse(mouseEvent))
             mouseListener.mouseEntered(mouseEvent);

@@ -45,20 +45,48 @@
             <sprite id="Pawn">
                 <path>src/Sprites/Chess/Pawn.png</path>
             </sprite>
+
+            <sprite id = "Pawn-outline">
+                <path></path>
+            </sprite>
+
             <sprite id="King">
                 <path>src/Sprites/Chess/King.png</path>
             </sprite>
+            <sprite id="King-outline">
+                <path>src/Sprites/Chess/Outline/King_outline.png</path>
+            </sprite>
+
             <sprite id="Queen">
                 <path>src/Sprites/Chess/Queen.png</path>
             </sprite>
+
+            <sprite id="Queen-outline">
+                <path>src/Sprites/Chess/Outline/Queen_outline.png</path>
+            </sprite>
+
             <sprite id="Rook">
                 <path>src/Sprites/Chess/Rook.png</path>
             </sprite>
+
+            <sprite id="Rook-outline">
+                <path>src/Sprites/Chess/Outline/Rook_outline.png</path>
+            </sprite>
+
             <sprite id="Knight">
                 <path>src/Sprites/Chess/Knight.png</path>
             </sprite>
+
+            <sprite id="Knight-outline">
+                <path>src/Sprites/Chess/Outline/Knight_outline.png</path>
+            </sprite>
+
             <sprite id="Bishop">
                 <path>src/Sprites/Chess/Bishop.png</path>
+            </sprite>
+
+            <sprite id="Bishop-outline">
+                <path>src/Sprites/Chess/Outline/Bishop_outline.png</path>
             </sprite>
         </team>
     </Actors>

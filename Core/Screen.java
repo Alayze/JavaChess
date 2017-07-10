@@ -8,7 +8,6 @@ package Core;
 import Components.Event.MouseObserver;
 import Scenes.Game;
 import Scenes.MainMenu;
-import Utils.Log;
 
 
 import java.awt.*;
@@ -16,13 +15,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Screen extends Canvas{
     private int bufferWidth,bufferHeight;
-    private ArrayList<MouseObserver> observers;
 
     private Graphics bufferGraphics;
     private Image bufferImage;
@@ -69,7 +66,7 @@ public class Screen extends Canvas{
     public void resetBuffer(){
         bufferHeight = getSize().height;
         bufferWidth = getSize().width;
-        System.out.println(bufferWidth);
+        //System.out.println(bufferWidth);
 
         if(bufferImage!=null){
             bufferGraphics.dispose();
@@ -102,7 +99,7 @@ public class Screen extends Canvas{
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 super.mouseClicked(mouseEvent);
-                NotifyObservers(mouseEvent , "MOUSE_CLICKED");
+                NotifyObservers(mouseEvent);
             }
         });
 
@@ -110,7 +107,7 @@ public class Screen extends Canvas{
             @Override
             public void mouseMoved(MouseEvent mouseEvent) {
                 super.mouseMoved(mouseEvent);
-                NotifyObservers(mouseEvent,"MOUSE_MOVED");
+                NotifyObservers(mouseEvent);
             }
         });
 
@@ -119,15 +116,12 @@ public class Screen extends Canvas{
     /**
      * Funzione che invia le notifiche ai observers di scena corrente di sceneManager
      * @param mouseEvent evento da inviare
-     * @param message messagio da inviare
      */
-    private void NotifyObservers(MouseEvent mouseEvent , String message)
+    private void NotifyObservers(MouseEvent mouseEvent)
     {
-        for(MouseObserver observer : sceneManager.getObservers())
-        {
-            observer.update(mouseEvent,message);
-        }
+        sceneManager.notifyObservers(mouseEvent);
     }
+
     @Override
     public void paint(Graphics graphics) {
         if(bufferWidth!=getSize().width ||
@@ -151,6 +145,7 @@ public class Screen extends Canvas{
     public void update(Graphics graphics) {
         /*super.update(graphics);*/
         paint(graphics);
+        sceneManager.getCurrentScene().Update();
     }
 
 

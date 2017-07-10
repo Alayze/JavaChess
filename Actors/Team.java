@@ -1,15 +1,17 @@
 package Actors;
 
+import Components.Event.MouseObserver;
 import Components.Graphics.Drawable;
 import Terrain.Board;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
  * Created by dimaer on 31/03/17.
  */
-public class Team implements Drawable {
+public class Team implements Drawable,MouseObserver {
 
     private ArrayList<Piece> members;
     TEAMTYPE teamtype;
@@ -59,10 +61,25 @@ public class Team implements Drawable {
         members.add(member);
     }
 
+    public ArrayList<Piece> getMembers() {
+        return members;
+    }
+
+    public TEAMTYPE getTeamtype() {
+        return teamtype;
+    }
+
     @Override
     public void draw(Graphics graphics) {
         for (Piece piece : members){
             piece.draw(graphics);
+        }
+    }
+
+    @Override
+    public void update(MouseEvent mouseEvent) {
+        for(Piece p : members) {
+            p.update(mouseEvent);
         }
     }
 }

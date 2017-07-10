@@ -3,8 +3,8 @@ package Core;
 import Components.Event.MouseObserver;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -62,17 +62,22 @@ public final class SceneManager {
 
         }
     }
+
+    public Scene getCurrentScene() {
+        return currentScene;
+    }
+
+    public void notifyObservers(MouseEvent mouseEvent){
+        getCurrentScene().notifyObservers(mouseEvent);
+    }
     public ArrayList<Scene> getScenes(){
         return scenes;
     }
 
-    /**
-     *
-     * @return
-     */
-    public ArrayList<MouseObserver> getObservers(){
+
+    /*public ArrayList<MouseObserver> getObservers(){
         return currentScene.getObservers();
-    }
+    }*/
     /**
      * Funzione che disegna la scena
      * @param graphics

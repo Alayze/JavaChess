@@ -4,6 +4,7 @@ import Components.Event.MouseObserver;
 import Components.Graphics.Drawable;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,15 @@ public abstract class Scene {
             observers.add((MouseObserver) element); //Se element anche e' instance di MouseObserver
             // allora faccio cast
         }
+    }
+
+    public List<Drawable> getElements() {
+        return elements;
+    }
+
+    public void notifyObservers(MouseEvent mouseEvent){
+        for(MouseObserver obs : getObservers())
+            obs.update(mouseEvent);
     }
     /**
      * Metodo che torna il tipo di scena

@@ -5,5 +5,5 @@ import java.awt.event.MouseEvent;
  */
 /**Fare refactoring e verificare i tipi*/
 public interface MouseObserver {
-    void update(MouseEvent mouseEvent,String message);
+    void update(MouseEvent mouseEvent);
 }

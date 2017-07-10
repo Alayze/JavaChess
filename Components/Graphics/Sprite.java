@@ -20,7 +20,8 @@ public class Sprite implements Drawable {
     private BufferedImage image;
     private File imageFile;
     private int depth;
-    private ImageObserver imageObserver ;
+    private ImageObserver imageObserver;
+    private boolean visibility;
 
     /**
      *Funzione che torna file di immagine
@@ -31,12 +32,28 @@ public class Sprite implements Drawable {
         return imageFile;
     }
 
+    public Sprite(){
+
+        position = new Point(0,0);
+
+        visibility = true;
+
+        imageObserver = new ImageObserver() {
+            @Override
+            public boolean imageUpdate(Image image, int i0, int i1, int i2, int i3, int i4) {
+                return false;
+
+            }
+        };
+    }
     /**
      * Costruttore che assegna ad ogni istanza la posizione iniziale
      * @param position posizione di locazione di Components.Graphics.Sprite
      */
     public Sprite(Point position)
     {
+        visibility = true;
+
         this.position = position;
 
         imageObserver = new ImageObserver() {
@@ -59,9 +76,13 @@ public class Sprite implements Drawable {
             image = ImageIO.read(imageFile);
 
         }catch (IOException e){
-            System.out.print(e.getMessage() +    " " + path);
+            System.out.println(e.getMessage() +    " " + path);
         }
 
+    }
+
+    public BufferedImage getImage() {
+        return image;
     }
 
     /**
@@ -83,6 +104,61 @@ public class Sprite implements Drawable {
     }
 
     /**
+     *
+     * @param origin
+     */
+    public void setOrigin(Point origin) {
+        this.origin = origin;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Point getOrigin() {
+        return origin;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
+    }
+
+    public boolean isVisibility() {
+        return visibility;
+    }
+
+    public boolean isContainPoint(Point point){
+        //System.out.println(getImage().getHeight());
+        if(point.y >= getPosition().y && point.y <= image.getHeight() + getPosition().y)
+            if(point.x >= getPosition().x && point.x <= image.getWidth() + getPosition().x)
+                return true;
+
+        return false;
+    }
+    public boolean perPixelCollision(Point point){
+        if(isContainPoint(point))
+        {
+            Point coord = new Point(point.x - getPosition().x,point.y - getPosition().y);
+            if(coord.x<=0)
+                coord.x = 0;
+            if(coord.y<=0)
+                coord.y = 0;
+
+            int colour = getImage().getRGB(coord.x,coord.y);
+
+                /*int  red = (colour & 0x00ff0000) >> 16;
+                int  green = (colour & 0x0000ff00) >> 8;
+                int  blue = colour & 0x000000ff;*/
+            int alpha = (colour>>24) & 0xff;
+
+            if(alpha!=0){
+                return true;
+            }
+
+        }
+        return false;
+    }
+    /**
      * Metodo che torna l'ordine di rendering
      * @return int ordine di render
      */
@@ -103,6 +179,7 @@ public class Sprite implements Drawable {
      */
     @Override
     public void draw(Graphics graphics){
+        if(visibility)
         graphics.drawImage(image,position.x,position.y,imageObserver);
 
     }

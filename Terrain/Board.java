@@ -1,33 +1,33 @@
 package Terrain;
 
-import Components.Graphics.Drawable;
 import Core.*;
-import Utils.Log;
 
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Locale;
 
 /**
  * Classe che descrive il tavolo da gioco
  * Created by dimaer on 27/03/17.
  */
-public class Board extends GameObject implements Drawable, WeatherObserver {
+public class Board extends GameObject implements WeatherObserver {
     ArrayList<Cell> cells;
     Cell convertedCells [][];
     Weather weather;
     private Point position;
-
+    Point mouse;
     public Board(Point position,Weather weather) {
         super(position);
+        mouse = new Point();
+        setActive(false);
         this.position = position;
         this.weather = weather;
         weather.addWeatherObserver(this);//iscrizione di scachierra sulle notifiche de Weather
         cells = new ArrayList<>();
         convertedCells = new Cell[8][8];
         generateBoard(position);
-        System.out.println(weather.getWeather().toString());
+        //System.out.println(weather.getWeather().toString());
 
     }
     /**Metodo che aggiorna oservatori di Weather*/
@@ -56,7 +56,7 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
             cellType = Cell.Type.TYPE1;
             if(i % 8 == 0)
             {
-                offsetY+=43; //E' bruto , bisogna incapsulare
+                offsetY+=80; //E' bruto , bisogna incapsulare
                 offsetX=0;
             }
 
@@ -65,7 +65,7 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
             cells.add(new Cell(cartToIso(position),spriteType,weather.getWeather().toString()));
             cells.get(i).getSprite().setDepth(i);
             cells.get(i).setType(cellType);
-            offsetX+=43; //E' bruto , bisogna incapsulare
+            offsetX+=80; //E' bruto , bisogna incapsulare
 
         }
         convertArray();
@@ -117,6 +117,21 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
         return inverseCells;
     }
 
+    public ArrayList<Cell> getRow(int n){
+        ArrayList<Cell> row = new ArrayList<>();
+        for(int i = 0;i<8;i++){
+            row.add(getCell(n,i));
+        }
+        return row;
+    }
+    public ArrayList<Cell> getColumn(int n){
+        ArrayList<Cell> column = new ArrayList<>();
+        for(int i = 0;i<8;i++){
+            column.add(getCell(i,n));
+        }
+        return column;
+    }
+
     /**
      * Metodo che torna l'insieme di celle
      * @return ArrayList<Cell> l'insieme di celle che compongono la scachiera
@@ -140,8 +155,19 @@ public class Board extends GameObject implements Drawable, WeatherObserver {
     private Point cartToIso(Point vector){
         return new Point(vector.x-vector.y,(vector.x+vector.y)/2);
     }
+
+    @Override
+    public void update(MouseEvent mouseEvent) {
+        super.update(mouseEvent);
+        mouse = new Point(mouseEvent.getX(),mouseEvent.getY());
+        for (Cell c : cells){
+            c.update(mouseEvent);
+        }
+    }
+
     @Override
     public void draw(Graphics graphics) {
+        //graphics.drawString(" "+ cartToIso(mouse).x + " " + cartToIso(mouse).y,mouse.x,mouse.y);
         for (Cell c : cells){
             c.draw(graphics);
             //Log.getInstance().showOrigins(graphics,c.getSprite());
