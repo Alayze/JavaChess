@@ -32,6 +32,9 @@ public class Sprite implements Drawable {
         return imageFile;
     }
 
+    /**
+     *
+     */
     public Sprite(){
 
         position = new Point(0,0);
@@ -92,6 +95,11 @@ public class Sprite implements Drawable {
     public Point getPosition() {
         return position;
     }
+
+    /**
+     *
+     * @param vector
+     */
     public void setPosition(Point vector){position = vector;}
     /**
      * Il metodo che calcola le coordinate del centro di sprite rispetto all'immagine
@@ -119,14 +127,27 @@ public class Sprite implements Drawable {
         return origin;
     }
 
+    /**
+     *
+     * @param visibility
+     */
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isVisibility() {
         return visibility;
     }
 
+    /**
+     *
+     * @param point
+     * @return
+     */
     public boolean isContainPoint(Point point){
         //System.out.println(getImage().getHeight());
         if(point.y >= getPosition().y && point.y <= image.getHeight() + getPosition().y)
@@ -135,6 +156,12 @@ public class Sprite implements Drawable {
 
         return false;
     }
+
+    /**
+     *
+     * @param point
+     * @return
+     */
     public boolean perPixelCollision(Point point){
         if(isContainPoint(point))
         {

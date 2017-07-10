@@ -11,9 +11,13 @@ import java.util.TimerTask;
 public final class Weather {
 
     private WEATHER_TYPE currentType;
-    Timer timer;
-    ArrayList<WeatherObserver> weatherObservers;
+    private Timer timer;
+    private ArrayList<WeatherObserver> weatherObservers;
 
+    /**
+     *
+     * @param weather
+     */
     public Weather(WEATHER_TYPE weather){
         weatherObservers = new ArrayList<>();
         currentType = weather;
@@ -82,6 +86,10 @@ public final class Weather {
     public WEATHER_TYPE getWeather(){
         return currentType;
     }
+
+    /**
+     *
+     */
     public enum WEATHER_TYPE{
         Autumn,Winter,Spring,Summer
     }

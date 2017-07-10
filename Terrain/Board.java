@@ -17,6 +17,12 @@ public class Board extends GameObject implements WeatherObserver {
     Weather weather;
     private Point position;
     Point mouse;
+
+    /**
+     *
+     * @param position
+     * @param weather
+     */
     public Board(Point position,Weather weather) {
         super(position);
         mouse = new Point();
@@ -96,12 +102,24 @@ public class Board extends GameObject implements WeatherObserver {
         else
             return null;
     }
+
+    /**
+     *
+     * @param n
+     * @param ch
+     * @return
+     */
     public Cell getCell(int n,char ch){
 
             //for(int y = 0;y<8;y++) {
               return  convertedCells[n][ch - 97];
             //}
     }
+
+    /**
+     *
+     * @return
+     */
     private ArrayList<Cell> inverseMatrix()
     {
         ArrayList<Cell> inverseCells = new ArrayList<>();
@@ -117,6 +135,11 @@ public class Board extends GameObject implements WeatherObserver {
         return inverseCells;
     }
 
+    /**
+     *
+     * @param n
+     * @return
+     */
     public ArrayList<Cell> getRow(int n){
         ArrayList<Cell> row = new ArrayList<>();
         for(int i = 0;i<8;i++){
@@ -124,6 +147,12 @@ public class Board extends GameObject implements WeatherObserver {
         }
         return row;
     }
+
+    /**
+     *
+     * @param n
+     * @return
+     */
     public ArrayList<Cell> getColumn(int n){
         ArrayList<Cell> column = new ArrayList<>();
         for(int i = 0;i<8;i++){

@@ -5,5 +5,8 @@ package Core;
  * Interfaccia che deve essere implementata dalle classi interessati nelle notifiche di cambiamento delle stagioni
  */
 public interface WeatherObserver {
+    /**
+     *
+     */
     void setSprite();
 }

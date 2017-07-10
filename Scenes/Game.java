@@ -46,6 +46,7 @@ public final class Game extends Scene {
         addElement(board);
         for(Cell cell : board.getCells())
             addElement(cell);
+
         for (int i = 0 ;i<8;i++){
             Pawn pawn = new Pawn(board.getCell(6,(char)('a'+i)), Team.TEAMTYPE.Blue);
             addElement(pawn);
@@ -63,10 +64,6 @@ public final class Game extends Scene {
         addElement(new Rook(board.getCell(7,'h'), Team.TEAMTYPE.Blue));
 
 
-        for(int i = 0;i<8;i++){
-            Pawn pawn = new Pawn(board.getCell(1,(char)('a' + i)), Team.TEAMTYPE.Red);
-            addElement(pawn);
-        }
 
         addElement(new Rook(board.getCell(0,'a'), Team.TEAMTYPE.Red));
         addElement(new Knight(board.getCell(0,'b'), Team.TEAMTYPE.Red));
@@ -78,6 +75,11 @@ public final class Game extends Scene {
         addElement(new King(board.getCell(0,'e'), Team.TEAMTYPE.Red));
 
         addElement(new Rook(board.getCell(0,'h'), Team.TEAMTYPE.Red));
+
+        for(int i = 0;i<8;i++){
+            Pawn pawn = new Pawn(board.getCell(1,(char)('a' + i)), Team.TEAMTYPE.Red);
+            addElement(pawn);
+        }
 
         addElement(labelTurn);
         addElement(labelSeason);

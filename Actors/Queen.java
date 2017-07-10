@@ -20,7 +20,7 @@ public class Queen extends Piece{
         setSpriteOutline(teamtype.toString(),"Queen-outline");
     }
 
-    @Override
+    /*@Override
     public void Move(Cell cell) {
         setCurrentCell(cell);
         getSprite().setOrigin(new Point(-50,-118));
@@ -28,7 +28,7 @@ public class Queen extends Piece{
                                   getSprite().getOrigin().y + cell.getSprite().getCenter().y);
         setPosition(position);
 
-    }
+    }*/
 
     @Override
     public void Die() {

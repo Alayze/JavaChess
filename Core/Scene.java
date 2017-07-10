@@ -1,11 +1,13 @@
 package Core;
 
+import Actors.Piece;
 import Components.Event.MouseObserver;
 import Components.Graphics.Drawable;
+import Scenes.Game;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 /**
@@ -24,9 +26,20 @@ public abstract class Scene {
     public enum SCENE_TYPE {
         MAIN_MENU,OPTIONS,STATS,RUNNED_GAME
     }
+
+    /**
+     *
+     */
     public abstract void Init();
+
+    /**
+     *
+     */
     public abstract void Update();
 
+    /**
+     *
+     */
     public Scene(){observers = new ArrayList<>();elements = new ArrayList<>();Init();}
 
     /**
@@ -50,13 +63,49 @@ public abstract class Scene {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Drawable> getElements() {
         return elements;
     }
 
+    /**
+     *
+     * @param mouseEvent
+     */
     public void notifyObservers(MouseEvent mouseEvent){
         for(MouseObserver obs : getObservers())
             obs.update(mouseEvent);
+    }
+
+    /**
+     *
+     */
+    public void arrange(){
+        for(int i = 0; i < elements.size(); i++) {
+
+            boolean flag = false;
+
+            for(int j = 0; j < elements.size()-1; j++) {
+                if (elements.get(j) instanceof Piece && elements.get(j + 1) instanceof Piece) {
+                    Piece temp1 = (Piece) elements.get(j);
+                    Piece temp2 = (Piece) elements.get(j + 1);
+
+                    if (temp1.getSprite().getDepth() > temp2.getSprite().getDepth()) {
+                        Drawable element = elements.get(j);
+                        elements.set(j, elements.get(j + 1));
+                        elements.set(j + 1, element);
+                        flag = true;
+                    }
+
+
+                }
+            }
+
+            if(!flag) break;
+        }
     }
     /**
      * Metodo che torna il tipo di scena
@@ -67,6 +116,10 @@ public abstract class Scene {
         return sceneType;
     }
 
+    /**
+     *
+     * @param sceneType
+     */
     public void setSceneType(SCENE_TYPE sceneType){
         this.sceneType = sceneType;
     }
@@ -76,6 +129,9 @@ public abstract class Scene {
      */
     public void draw(Graphics graphics)
     {
+
+
+        arrange(); //Z-Order
         for(Drawable d : elements)
         {
             d.draw(graphics);

@@ -63,13 +63,26 @@ public final class SceneManager {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Scene getCurrentScene() {
         return currentScene;
     }
 
+    /**
+     *
+     * @param mouseEvent
+     */
     public void notifyObservers(MouseEvent mouseEvent){
         getCurrentScene().notifyObservers(mouseEvent);
     }
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<Scene> getScenes(){
         return scenes;
     }

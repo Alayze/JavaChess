@@ -23,22 +23,45 @@
     <Actors>
         <team id="Red">
             <sprite id="Pawn">
-                <path>src/Sprites/Chess/Pawn.png</path>
+                <path>src/Sprites/Chess/Red/Pawn.png</path>
             </sprite>
+            <sprite id="Pawn-outline">
+                <path>src/Sprites/Chess/Red/Pawn_outline.png</path>
+            </sprite>
+
             <sprite id="King">
-                <path></path>
+                <path>src/Sprites/Chess/Red/King.png</path>
             </sprite>
+            <sprite id="King-outline">
+                <path>src/Sprites/Chess/Red/King_outline.png</path>
+            </sprite>
+
             <sprite id="Queen">
-                <path></path>
+                <path>src/Sprites/Chess/Red/Queen.png</path>
             </sprite>
+            <sprite id="Queen-outline">
+                <path>src/Sprites/Chess/Red/Queen_outline.png</path>
+            </sprite>
+
             <sprite id="Rook">
-                <path>src/Sprites/Chess/Rook.png</path>
+                <path>src/Sprites/Chess/Red/Rook.png</path>
             </sprite>
+            <sprite id="Rook-outline">
+                <path>src/Sprites/Chess/Red/Rook_outline.png</path>
+            </sprite>
+
             <sprite id="Knight">
-                <path></path>
+                <path>src/Sprites/Chess/Red/Knight.png</path>
             </sprite>
+            <sprite id="Knight-outline">
+                <path>src/Sprites/Chess/Red/Knight_outline.png</path>
+            </sprite>
+
             <sprite id="Bishop">
-                <path>src/Sprites/Chess/Bishop.png</path>
+                <path>src/Sprites/Chess/Red/Bishop.png</path>
+            </sprite>
+            <sprite id="Bishop-outline">
+                <path>src/Sprites/Chess/Red/Bishop_outline.png</path>
             </sprite>
         </team>
         <team id="Blue">
@@ -47,7 +70,7 @@
             </sprite>
 
             <sprite id = "Pawn-outline">
-                <path></path>
+                <path>src/Sprites/Chess/Outline/Pawn_outline.png</path>
             </sprite>
 
             <sprite id="King">

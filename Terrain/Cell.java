@@ -18,6 +18,12 @@ public class Cell extends GameObject {
 
     private String spriteType;
 
+    /**
+     *
+     * @param position
+     * @param spriteType
+     * @param weatherType
+     */
     public Cell(Point position, String spriteType, String weatherType){
         super(position);
         setActive(false);
@@ -28,9 +34,18 @@ public class Cell extends GameObject {
         getSprite().setImage(ResourceLoader.getInstance().LoadTile(weatherType,spriteType));
     }
     //Enumerazione che contiene dei valori di tipo di cella (il colore sulla scacchiera)
+
+    /**
+     *
+     */
     enum Type{
         TYPE1,TYPE2
     }
+
+    /**
+     *
+     * @return
+     */
     public Point getCoord(){
 
         int depth = getSprite().getDepth();
@@ -47,24 +62,16 @@ public class Cell extends GameObject {
     {
         this.type = type;
     }
-    public String getSpriteType(){return spriteType;}
+
     /**
      *
      * @return
      */
-    /*public Sprite getSprite() {
-        return sprite;
-    }*/
-    /*@Override
-    public Point getPosition() {
+    public String getSpriteType(){return spriteType;}
 
-    }
-    */
     @Override
     public void update(MouseEvent mouseEvent) {
         super.update(mouseEvent);
-        //if(isSelected())
-
     }
 
     @Override

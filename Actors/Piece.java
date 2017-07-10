@@ -44,7 +44,18 @@ public abstract class Piece extends GameObject{
      * Metodo che sposta la piedina
      * @param cell cella della nuova posizione
      */
-    public abstract void Move(Cell cell);
+    public void Move(Cell cell){
+
+        setCurrentCell(cell);
+        Point position = new Point(getSprite().getOrigin().x + cell.getSprite().getCenter().x,
+                getSprite().getOrigin().y + cell.getSprite().getCenter().y);
+        getSprite().setPosition(position);
+        getSpriteOutline().setPosition(position);
+
+        getSprite().setDepth(getCurrentCell().getSprite().getDepth());
+        getSpriteOutline().setDepth(getCurrentCell().getSprite().getDepth());
+
+    }
     public abstract void Die();
 
     public void setCurrentCell(Cell currentCell) {
@@ -95,7 +106,7 @@ public abstract class Piece extends GameObject{
             super.draw(graphics);
             spriteOutline.draw(graphics);
         }
-         //graphics.drawString(mouse.toString(),mouse.x,mouse.y);
+         //graphics.drawString(""+getSprite().getDepth(),getSprite().getPosition().x,getSprite().getPosition().y-50);
         /*if(perPixelCollision(new Point(mouse.x,mouse.y)))
             graphics.setColor(new Color(100,0,0));
         else

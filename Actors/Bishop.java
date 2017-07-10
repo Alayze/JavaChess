@@ -20,14 +20,14 @@ public class Bishop extends Piece {
         setSpriteOutline(teamtype.toString(),"Bishop-outline");
     }
 
-    @Override
+    /*@Override
     public void Move(Cell cell) {
         setCurrentCell(cell);
         Point position = new Point(getSprite().getOrigin().x + cell.getSprite().getCenter().x,
                 getSprite().getOrigin().y + cell.getSprite().getCenter().y);
         getSprite().setPosition(position);
         getSpriteOutline().setPosition(position);
-    }
+    }*/
 
     @Override
     public void Die() {

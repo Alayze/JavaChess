@@ -19,7 +19,7 @@ public class GameObject implements Drawable, MouseObserver {
     private Sprite sprite;
 
     private Point position;
-    private State state;
+
 
     private boolean visibility;
     private boolean active;
@@ -30,7 +30,7 @@ public class GameObject implements Drawable, MouseObserver {
 
     public GameObject(Point position)
     {
-        state = new State(State.Type.active);
+        
         active = true;
         visibility = true;
         this.position = position;
