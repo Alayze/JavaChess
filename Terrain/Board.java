@@ -1,5 +1,6 @@
 package Terrain;
 
+import Actors.Piece;
 import Core.*;
 
 
@@ -158,7 +159,6 @@ public class Board extends GameObject implements WeatherObserver {
         }
         return column;
     }
-
     /**
      * Metodo che torna l'insieme di celle
      * @return l'insieme di celle che compongono la scachiera

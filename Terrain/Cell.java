@@ -19,6 +19,7 @@ public class Cell extends GameObject {
     private Color attackColor;
     private String spriteType;
     private boolean atackable;
+    private boolean empty;
     /**
      *Costruttore di cella
      * @param position posizione iniziale sullo scherma
@@ -27,6 +28,7 @@ public class Cell extends GameObject {
      */
     public Cell(Point position, String spriteType, String weatherType){
         super(position);
+        empty = true;
         atackable=false;
         setActive(false);
         colorFill = new Color(0,0,0,100);
@@ -40,6 +42,14 @@ public class Cell extends GameObject {
 
     enum Type{
         TYPE1,TYPE2
+    }
+
+    public void setEmpty(boolean empty) {
+        this.empty = empty;
+    }
+
+    public boolean isEmpty() {
+        return empty;
     }
 
     /**
@@ -109,7 +119,7 @@ public class Cell extends GameObject {
 
             graphics.setColor(colorFill);
 
-            if(isAtackable())
+            if(isAtackable() )
                 graphics.setColor(attackColor);
 
             graphics.fillOval(getSprite().getCenter().x - 20, getSprite().getCenter().y, 40, 25);

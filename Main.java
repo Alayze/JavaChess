@@ -17,8 +17,6 @@ public class Main {
         Frame mainFrame = new Frame("ChessGame");
         mainFrame.add(screen);
 
-
-
         mainFrame.setSize(1024,768);
         mainFrame.addWindowListener(new WindowAdapter() {
             @Override

@@ -23,8 +23,9 @@ public final class ResourceLoader {
 
 
     private ResourceLoader(){
-        resourceFile = new File("src/Resources.xml");
-        levelFile = new File("src/Levels.xml");
+
+        resourceFile = new File(System.getProperty("user.dir") + "/Resources.xml");
+        levelFile = new File(System.getProperty("user.dir") + "/Levels.xml");
         dbFactory = DocumentBuilderFactory.newInstance();
         try {
             dBuilder = dbFactory.newDocumentBuilder();

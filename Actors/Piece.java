@@ -3,10 +3,12 @@ package Actors;
 import Components.Graphics.Sprite;
 import Core.GameObject;
 import Core.ResourceLoader;
+import Terrain.Board;
 import Terrain.Cell;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 /**
  * Created by dimaer on 21/06/17.
@@ -19,7 +21,7 @@ public abstract class Piece extends GameObject{
     private Cell currentCell;
 
     private Team.TEAMTYPE team;
-
+    private Board board;
     /**
      *Costruttore di Piece
      */
@@ -30,13 +32,16 @@ public abstract class Piece extends GameObject{
      * @param cell cella iniziale
      * @param team tipo di squadra
      */
-    public Piece(Cell cell, Team.TEAMTYPE team){
+    public Piece(Cell cell, Team.TEAMTYPE team, Board board){
         super(cell.getPosition());
         this.team = team;
+
+        this.board = board;
 
         spriteOutline = new Sprite(cell.getPosition());
         spriteOutline.setVisibility(false);
         currentCell = cell;
+        currentCell.setEmpty(false);
 
         getSprite().setDepth(getCurrentCell().getSprite().getDepth());
         getSpriteOutline().setDepth(getCurrentCell().getSprite().getDepth());
@@ -59,13 +64,15 @@ public abstract class Piece extends GameObject{
         getSpriteOutline().setDepth(getCurrentCell().getSprite().getDepth());
 
     }
-
+    public abstract ArrayList<Cell> getValidCells();
     /**
      *Metodo che imposta la cella corrente
      * @param currentCell cella da impostare
      */
     public void setCurrentCell(Cell currentCell) {
+        this.currentCell.setEmpty(true);
         this.currentCell = currentCell;
+        this.currentCell.setEmpty(false);
     }
 
     /**
@@ -74,6 +81,14 @@ public abstract class Piece extends GameObject{
      */
     public Cell getCurrentCell() {
         return currentCell;
+    }
+
+    /**
+     * Metodo che ritorna oggetto della scachiera
+     * @return scachiera
+     */
+    public Board getBoard() {
+        return board;
     }
 
     /**

@@ -6,6 +6,7 @@ import Components.Graphics.Drawable;
 import Components.Graphics.Gui.Label;
 import Core.GameObject;
 import Core.Scene;
+import Core.SceneManager;
 import Core.Weather;
 import Terrain.Board;
 import Terrain.Cell;
@@ -25,13 +26,11 @@ public final class Game extends Scene {
     MouseObserver selectedSprite;
     Piece selectedPiece;
     Team.TEAMTYPE currentTurn;
-
     /**
      * Metodo che inizializza la scena
      */
     @Override
     public void Init() {
-
 
         currentTurn = Team.TEAMTYPE.Blue;
 
@@ -41,41 +40,40 @@ public final class Game extends Scene {
         labelTurn = new Label("Turno di giocatore :",new Point(100,100));
         labelSeason = new Label("Stagione :",new Point(400,50));
 
-        //addElement(board);
         for(Cell cell : board.getCells())
             addElement(cell);
 
         for (int i = 0 ;i<8;i++){
-            Pawn pawn = new Pawn(board.getCell(6,(char)('a'+i)), Team.TEAMTYPE.Blue);
+            Pawn pawn = new Pawn(board.getCell(6,(char)('a'+i)), Team.TEAMTYPE.Blue,board);
             addElement(pawn);
         }
 
-        addElement(new Rook(board.getCell(7,'a'), Team.TEAMTYPE.Blue));
-        addElement(new Knight(board.getCell(7,'b'), Team.TEAMTYPE.Blue));
-        addElement(new Bishop(board.getCell(7,'c'), Team.TEAMTYPE.Blue));
-        addElement(new Queen(board.getCell(7,'d'), Team.TEAMTYPE.Blue));
-        addElement(new Bishop(board.getCell(7,'f'), Team.TEAMTYPE.Blue));
-        addElement(new Knight(board.getCell(7,'g'), Team.TEAMTYPE.Blue));
+        addElement(new Rook(board.getCell(7,'a'), Team.TEAMTYPE.Blue,board));
+        addElement(new Knight(board.getCell(7,'b'), Team.TEAMTYPE.Blue,board));
+        addElement(new Bishop(board.getCell(7,'c'), Team.TEAMTYPE.Blue,board));
+        addElement(new Queen(board.getCell(7,'d'), Team.TEAMTYPE.Blue,board));
+        addElement(new Bishop(board.getCell(7,'f'), Team.TEAMTYPE.Blue,board));
+        addElement(new Knight(board.getCell(7,'g'), Team.TEAMTYPE.Blue,board));
 
-        addElement(new King(board.getCell(7,'e'), Team.TEAMTYPE.Blue));
+        addElement(new King(board.getCell(7,'e'), Team.TEAMTYPE.Blue,board));
 
-        addElement(new Rook(board.getCell(7,'h'), Team.TEAMTYPE.Blue));
+        addElement(new Rook(board.getCell(7,'h'), Team.TEAMTYPE.Blue,board));
 
 
 
-        addElement(new Rook(board.getCell(0,'a'), Team.TEAMTYPE.Red));
-        addElement(new Knight(board.getCell(0,'b'), Team.TEAMTYPE.Red));
-        addElement(new Bishop(board.getCell(0,'c'), Team.TEAMTYPE.Red));
-        addElement(new Queen(board.getCell(0,'d'), Team.TEAMTYPE.Red));
-        addElement(new Bishop(board.getCell(0,'f'), Team.TEAMTYPE.Red));
-        addElement(new Knight(board.getCell(0,'g'), Team.TEAMTYPE.Red));
+        addElement(new Rook(board.getCell(0,'a'), Team.TEAMTYPE.Red,board));
+        addElement(new Knight(board.getCell(0,'b'), Team.TEAMTYPE.Red,board));
+        addElement(new Bishop(board.getCell(0,'c'), Team.TEAMTYPE.Red,board));
+        addElement(new Queen(board.getCell(0,'d'), Team.TEAMTYPE.Red,board));
+        addElement(new Bishop(board.getCell(0,'f'), Team.TEAMTYPE.Red,board));
+        addElement(new Knight(board.getCell(0,'g'), Team.TEAMTYPE.Red,board));
 
-        addElement(new King(board.getCell(0,'e'), Team.TEAMTYPE.Red));
+        addElement(new King(board.getCell(0,'e'), Team.TEAMTYPE.Red,board));
 
-        addElement(new Rook(board.getCell(0,'h'), Team.TEAMTYPE.Red));
+        addElement(new Rook(board.getCell(0,'h'), Team.TEAMTYPE.Red,board));
 
         for(int i = 0;i<8;i++){
-            Pawn pawn = new Pawn(board.getCell(1,(char)('a' + i)), Team.TEAMTYPE.Red);
+            Pawn pawn = new Pawn(board.getCell(1,(char)('a' + i)), Team.TEAMTYPE.Red,board);
             addElement(pawn);
         }
 
@@ -124,7 +122,6 @@ public final class Game extends Scene {
         }
         return null;
     }
-
     /**
      *Cambia la squadra corrente
      */
@@ -141,356 +138,18 @@ public final class Game extends Scene {
      */
     public void makeCellActive(Piece piece){
 
-        int currentColumn = piece.getCurrentCell().getCoord().y;
-        int currentRow = piece.getCurrentCell().getCoord().x;
+        for(Cell cell : piece.getValidCells()){
+            if(isValid(cell)){
+                cell.setActive(true);
+            }
+            else {
+                Piece p = getPiece(cell);
 
-        boolean breakCellUp = false;
-        boolean breakCellDown = false;
-        boolean breakCellLeft = false;
-        boolean breakCellRight = false;
-        boolean breakCellUpLeft = false;
-        boolean breakCellUpRight = false;
-        boolean breakCellDownLeft = false;
-        boolean breakCellDownRight = false;
-
-        Cell cellUp,cellDown,cellLeft,cellRight,cellUpRight,cellUpLeft,cellDownRight,cellDownLeft;
-
-
-        switch (piece.getClass().getName()){
-
-            case "Actors.Queen" :
-                Queen queen = (Queen) piece;
-
-                for(int i = 1;i<8;i++){
-                    if(currentRow - i>=0) {
-
-                        cellUp = board.getColumn(currentColumn).get(currentRow - i);
-
-                        if (isValid(cellUp) && !breakCellUp)
-                            cellUp.setActive(true);
-                        else{
-                            Piece p = getPiece(cellUp);
-                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellUp){
-                                cellUp.setActive(true);
-                                cellUp.setAtackable(true);
-                                breakCellUp = true;
-                            }
-                            else
-                                breakCellUp = true;
-                        }
-
-                    }
-                    if(currentColumn - i>=0){
-                        cellLeft = board.getColumn(currentColumn-i).get(currentRow);
-                        if(isValid(cellLeft) && !breakCellLeft)
-                            cellLeft.setActive(true);
-                        else{
-
-                            Piece p = getPiece(cellLeft);
-
-                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellLeft){
-                                cellLeft.setActive(true);
-                                cellLeft.setAtackable(true);
-                                breakCellLeft = true;
-                            }
-                            else
-                                breakCellLeft = true;
-                        }
-                    }
+                if(p.getTeam()!=piece.getTeam()){
+                    cell.setActive(true);
+                    cell.setAtackable(true);
                 }
-                for(int i = 1;i<8;i++){
-                    if(currentRow + i<8) {
-
-                        cellDown = board.getColumn(currentColumn).get(currentRow + i);
-
-                        if (isValid(cellDown) && !breakCellDown)
-                            cellDown.setActive(true);
-                        else{
-
-                            Piece p = getPiece(cellDown);
-
-                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellDown){
-                                cellDown.setActive(true);
-                                cellDown.setAtackable(true);
-                                breakCellDown = true;
-                            }
-                            else
-                                breakCellDown = true;
-                        }
-                    }
-                    if(currentColumn + i<8){
-
-                        cellRight = board.getColumn(currentColumn+i).get(currentRow);
-
-                        if(isValid(cellRight) && !breakCellRight)
-                            cellRight.setActive(true);
-                        else{
-                            Piece p = getPiece(cellRight);
-
-                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellRight){
-                                cellRight.setActive(true);
-                                cellRight.setAtackable(true);
-                                breakCellRight = true;
-                            }
-
-                            breakCellRight = true;
-                        }
-                    }
-                }
-
-                for(int i = 1;i<8;i++){
-
-                    if(currentColumn+i<8 && (currentRow - i)>=0) {
-
-                        cellUpRight = board.getColumn(currentColumn + i).get(currentRow - i);
-
-                        if (isValid(cellUpRight) && !breakCellUpRight)
-                            cellUpRight.setActive(true);
-                        else {
-                            Piece p = getPiece(cellUpRight);
-
-                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellUpRight){
-                                cellUpRight.setActive(true);
-                                cellUpRight.setAtackable(true);
-                                breakCellUpRight = true;
-                            }
-
-
-                            breakCellUpRight = true;
-                        }
-                    }
-
-                    if(currentColumn - i>=0 && (currentRow - i)>=0) {
-
-                        cellUpLeft = board.getColumn(currentColumn - i).get(currentRow - i);
-
-                        if (isValid(cellUpLeft) && !breakCellUpLeft)
-                            cellUpLeft.setActive(true);
-                        else{
-
-                            Piece p = getPiece(cellUpLeft);
-
-                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellUpLeft){
-                                cellUpLeft.setActive(true);
-                                cellUpLeft.setAtackable(true);
-                                breakCellUpLeft = true;
-                            }
-
-                            breakCellUpLeft = true;
-                        }
-                    }
-                }
-
-                for(int i = 1;i<8;i++){
-
-                    if(currentColumn + i<8 && (currentRow + i)<8) {
-
-                        cellDownRight = board.getColumn(currentColumn + i).get(currentRow + i);
-
-                        if (isValid(cellDownRight) && !breakCellDownRight)
-                            cellDownRight.setActive(true);
-                        else{
-
-                            Piece p = getPiece(cellDownRight);
-
-                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellDownRight){
-                                cellDownRight.setActive(true);
-                                cellDownRight.setAtackable(true);
-                                breakCellDownRight = true;
-                            }
-
-                            breakCellDownRight = true;
-                        }
-                    }
-
-                    if(currentColumn - i>=0 && (currentRow + i)<8) {
-
-                        cellDownLeft = board.getColumn(currentColumn - i).get(currentRow + i);
-
-                        if (isValid(cellDownLeft) && !breakCellDownLeft)
-                            cellDownLeft.setActive(true);
-                        else{
-
-                            Piece p = getPiece(cellDownLeft);
-
-                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellDownLeft){
-                                cellDownLeft.setActive(true);
-                                cellDownLeft.setAtackable(true);
-                                breakCellDownLeft = true;
-                            }
-
-                            breakCellDownLeft = true;
-                        }
-
-                    }
-                }
-                break;
-
-            case "Actors.Pawn" :
-                Pawn pawn = (Pawn) piece;
-                if(pawn.getTeam()== Team.TEAMTYPE.Blue) {
-                    if (currentRow == 6) {
-                        if(isValid(board.getColumn(currentColumn).get(currentRow - 1)) && !breakCellUp){
-                            board.getColumn(currentColumn).get(currentRow - 1).setActive(true);
-                            if(isValid(board.getColumn(currentColumn).get(currentRow - 2)))
-                                board.getColumn(currentColumn).get(currentRow - 2).setActive(true);
-                        }
-                    } else
-                        if(isValid(board.getColumn(currentColumn).get(currentRow - 1)))
-                            board.getColumn(currentColumn).get(currentRow - 1).setActive(true);
-                } else {
-                    if(currentRow == 1 ){
-                        board.getColumn(currentColumn).get(currentRow + 1).setActive(true);
-                        board.getColumn(currentColumn).get(currentRow + 2).setActive(true);
-                    } else
-                        board.getColumn(currentColumn).get(currentRow + 1).setActive(true);
-                }
-
-                break;
-
-            case "Actors.Knight" :
-                Knight knight = (Knight) piece;
-
-                if(currentColumn+1<8 && currentRow+2<8)
-                    if(isValid(board.getColumn(currentColumn+1).get(currentRow+2)))
-                        board.getColumn(currentColumn+1).get(currentRow+2).setActive(true);
-                if(currentColumn+2<8 && currentRow+1<8)
-                    if(isValid(board.getColumn(currentColumn+2).get(currentRow+1)))
-                        board.getColumn(currentColumn+2).get(currentRow+1).setActive(true);
-
-                if(currentColumn-1>=0 && currentRow+2<8)
-                    if(isValid(board.getColumn(currentColumn-1).get(currentRow+2)))
-                        board.getColumn(currentColumn-1).get(currentRow+2).setActive(true);
-                if(currentColumn-2>=0 && currentRow+1<8)
-                    if(isValid(board.getColumn(currentColumn-2).get(currentRow+1)))
-                        board.getColumn(currentColumn-2).get(currentRow+1).setActive(true);
-
-                if(currentColumn+2<8 && currentRow-1>=0)
-                    if(isValid(board.getColumn(currentColumn+2).get(currentRow-1)))
-                        board.getColumn(currentColumn+2).get(currentRow-1).setActive(true);
-                if(currentColumn+1<8 && currentRow-2>=0)
-                    if(isValid(board.getColumn(currentColumn+1).get(currentRow-2)))
-                        board.getColumn(currentColumn+1).get(currentRow-2).setActive(true);
-
-                if(currentColumn-2>=0 && currentRow-1>=0)
-                    if(isValid(board.getColumn(currentColumn-2).get(currentRow-1)))
-                        board.getColumn(currentColumn-2).get(currentRow-1).setActive(true);
-                if(currentColumn-1>=0 && currentRow-2>=0)
-                    if(isValid(board.getColumn(currentColumn-1).get(currentRow-2)))
-                        board.getColumn(currentColumn-1).get(currentRow-2).setActive(true);
-
-                break;
-
-            case "Actors.Bishop" :
-                Bishop bishop = (Bishop) piece;
-
-                for(int i = 1;i<8;i++){
-                    if(currentColumn + i<8 && (currentRow - i)>=0)
-                        if(isValid(board.getColumn(currentColumn + i).get(currentRow-i)) && !breakCellUpRight)
-                            board.getColumn(currentColumn + i).get(currentRow-i).setActive(true);
-                        else
-                            breakCellUpRight = true;
-                    if(currentColumn - i>=0 && (currentRow - i)>=0)
-                        if(isValid(board.getColumn(currentColumn - i).get(currentRow-i)) && !breakCellUpLeft)
-                            board.getColumn(currentColumn - i).get(currentRow-i).setActive(true);
-                        else
-                            breakCellUpLeft = true;
-                }
-
-                for(int i = 1;i<8;i++){
-
-                    if(currentColumn + i<8 && (currentRow +i)<8)
-                        if(isValid(board.getColumn(currentColumn + i).get(currentRow+i)) && !breakCellDownRight)
-                            board.getColumn(currentColumn + i).get(currentRow+i).setActive(true);
-                        else
-                            breakCellDownRight = true;
-
-                    if(currentColumn - i>=0 && (currentRow + i)<8)
-                        if(isValid(board.getColumn(currentColumn - i).get(currentRow+i)) && !breakCellDownLeft)
-                            board.getColumn(currentColumn - i).get(currentRow+i).setActive(true);
-                        else
-                            breakCellDownLeft = true;
-                }
-                break;
-
-            case "Actors.King" :
-                King king = (King) piece;
-
-                if(currentColumn+1<8 && currentRow-1>=0){
-                    if(isValid(board.getColumn(currentColumn+1).get(currentRow-1)))
-                        board.getColumn(currentColumn+1).get(currentRow-1).setActive(true);
-                    else{
-
-                    }
-                }
-                if(currentRow-1>=0) {
-                    if (isValid(board.getColumn(currentColumn).get(currentRow - 1)))
-                        board.getColumn(currentColumn).get(currentRow - 1).setActive(true);
-                    else{
-
-                    }
-                }
-
-                if(currentColumn-1<8 && currentRow+1<8){
-                    if(isValid(board.getColumn(currentColumn - 1).get(currentRow+1)))
-                        board.getColumn(currentColumn - 1).get(currentRow+1).setActive(true);
-                    else {
-
-                    }
-                }
-                if(currentRow + 1 < 8)
-                    if(isValid(board.getColumn(currentColumn).get(currentRow + 1)))
-                        board.getColumn(currentColumn).get(currentRow + 1).setActive(true);
-
-                if(currentColumn + 1 < 8)
-                    if(isValid(board.getColumn(currentColumn + 1).get(currentRow)))
-                        board.getColumn(currentColumn + 1).get(currentRow).setActive(true);
-
-                if(currentColumn - 1>=0)
-                    if(isValid(board.getColumn(currentColumn - 1).get(currentRow)))
-                        board.getColumn(currentColumn - 1).get(currentRow).setActive(true);
-
-                if(currentColumn - 1>=0 && currentRow - 1>=0)
-                    if(isValid(board.getColumn(currentColumn - 1).get(currentRow - 1)))
-                        board.getColumn(currentColumn - 1).get(currentRow-1).setActive(true);
-
-                if(currentColumn + 1 < 8 && currentRow + 1 < 8)
-                    if(isValid(board.getColumn(currentColumn + 1).get(currentRow + 1)))
-                        board.getColumn(currentColumn + 1).get(currentRow+1).setActive(true);
-                break;
-
-            case "Actors.Rook" :
-                Rook rook = (Rook) piece;
-
-                for(int i = 1;i<8;i++){
-                    if(currentRow-i>=0) {
-                        if (isValid(board.getColumn(currentColumn).get(currentRow - i)) && !breakCellUp)
-                            board.getColumn(currentColumn).get(currentRow - i).setActive(true);
-                        else
-                            breakCellUp = true;
-                    }
-                    if(currentColumn-i>=0){
-                        if(isValid(board.getColumn(currentColumn-i).get(currentRow)) && !breakCellLeft)
-                            board.getColumn(currentColumn-i).get(currentRow).setActive(true);
-                        else
-                            breakCellLeft = true;
-                    }
-                }
-                for(int i = 1;i<8;i++){
-                    if(currentRow+i<8) {
-                        if (isValid(board.getColumn(currentColumn).get(currentRow + i)) && !breakCellDown)
-                            board.getColumn(currentColumn).get(currentRow + i).setActive(true);
-                        else
-                            breakCellDown = true;
-                    }
-                    if(currentColumn+i<8){
-                        if(isValid(board.getColumn(currentColumn+i).get(currentRow)) && !breakCellRight)
-                            board.getColumn(currentColumn+i).get(currentRow).setActive(true);
-                        else
-                            breakCellRight = true;
-                    }
-                }
-                break;
+            }
         }
     }
 
@@ -577,12 +236,17 @@ public final class Game extends Scene {
                 selectedPiece.Move(cell);
                 if(cell.isAtackable()) {
                     Piece deathPiece = getPiece(cell);
+                    if(deathPiece instanceof King){
+                        SceneManager.getInstance().setCurrentScene(SCENE_TYPE.MAIN_MENU);
+                    }
                     getElements().remove(deathPiece);
                     cell.setAtackable(false);
                 }
                 switchTeam();
                 disableCell();
+                selectedSprite = null;
                 selectedPiece.setSelected(false);
+                selectedPiece = null;
 
             }
 

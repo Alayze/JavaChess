@@ -25,13 +25,13 @@ public class Team implements Drawable,MouseObserver {
     {
         members = new ArrayList<>();
         this.teamtype = teamtype;
-        generateTeam(board);
+        //generateTeam(board);
     }
 
     public enum TEAMTYPE{
         Red, Blue
     }
-    private void generateTeam(Board board){
+    /*private void generateTeam(Board board){
         if(teamtype == TEAMTYPE.Red){
 
         }
@@ -40,12 +40,12 @@ public class Team implements Drawable,MouseObserver {
                 Pawn pawn = new Pawn(board.getCell(6,(char)('a'+i)),TEAMTYPE.Blue);
                 addMember(pawn);
             }
-                addMember(new Rook(board.getCell(7,'a'),TEAMTYPE.Blue));
-                addMember(new Knight(board.getCell(7,'b'),TEAMTYPE.Blue));
-                addMember(new Bishop(board.getCell(7,'c'),TEAMTYPE.Blue));
-                addMember(new Queen(board.getCell(7,'d'),TEAMTYPE.Blue));
-                addMember(new Bishop(board.getCell(7,'f'),TEAMTYPE.Blue));
-                addMember(new Knight(board.getCell(7,'g'),TEAMTYPE.Blue));
+                addMember(new Rook(board.getCell(7,'a'),TEAMTYPE.Blue,board));
+                addMember(new Knight(board.getCell(7,'b'),TEAMTYPE.Blue,board));
+                addMember(new Bishop(board.getCell(7,'c'),TEAMTYPE.Blue,board));
+                addMember(new Queen(board.getCell(7,'d'),TEAMTYPE.Blue,board));
+                addMember(new Bishop(board.getCell(7,'f'),TEAMTYPE.Blue,board));
+                addMember(new Knight(board.getCell(7,'g'),TEAMTYPE.Blue,board));
 
                 addMember(new King(board.getCell(7,'e'),TEAMTYPE.Blue));
 
@@ -56,7 +56,7 @@ public class Team implements Drawable,MouseObserver {
 
         }
     }
-
+*/
     /**
      *
      * @return

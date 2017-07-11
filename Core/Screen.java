@@ -28,7 +28,6 @@ public class Screen extends Canvas{
     Scene game;
     Scene mainMenu;
     Timer timer;
-
     /**
      * Metodo che aggiunge MouseListener
      * @param mouseListener MouseListener da aggiungere
@@ -39,10 +38,11 @@ public class Screen extends Canvas{
     }
 
     /**
-     * Costuttore di Screen
+     * Costruttore di Screen
      */
     public Screen()
     {
+
         initMouseListeners();
         game = new Game();
         mainMenu = new MainMenu();
@@ -148,7 +148,6 @@ public class Screen extends Canvas{
 
 
     }
-
     /**
      * Metodo che aggiorna lo schermo
      * @param graphics instanza di Graphics
@@ -157,6 +156,7 @@ public class Screen extends Canvas{
     public void update(Graphics graphics) {
         paint(graphics);
         sceneManager.getCurrentScene().Update();
+
     }
 
 
