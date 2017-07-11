@@ -9,11 +9,12 @@ import Components.Event.MouseObserver;
 import Components.Graphics.Drawable;
 
 public class Button implements Drawable,MouseObserver {
+
     private Rectangle boundRect;
     private MouseListener mouseListener;
     private String label;
     /**
-     * Costruttore
+     * Costruttore di Button
      * @param BoundRect Dimensioni di rettangolo
      */
     public Button(Rectangle BoundRect,String label)
@@ -23,11 +24,11 @@ public class Button implements Drawable,MouseObserver {
     }
 
     /**
-     *
-     * @param label
+     *Metodo che imposta testo per il pulsante
+     * @param label testo
      */
     public void setLabel(String label){
-
+        this.label = label;
     }
     /**
      * Metodo che imposta le dimensioni di rettangolo
@@ -59,8 +60,8 @@ public class Button implements Drawable,MouseObserver {
     }
 
     /**
-     *
-     * @param mouseListener
+     *Aggiunge MouseListener
+     * @param mouseListener MouseListener
      */
     public void addMouseListener(MouseListener mouseListener){
         this.mouseListener = mouseListener;
@@ -79,6 +80,10 @@ public class Button implements Drawable,MouseObserver {
         return false;
     }
 
+    /**
+     *Metodo che disegna il pulsante
+     * @param graphics oggetto di classe Graphics
+     */
     @Override
     public void draw(Graphics graphics) {
         graphics.drawRect(boundRect.x,boundRect.y,boundRect.width,boundRect.height);

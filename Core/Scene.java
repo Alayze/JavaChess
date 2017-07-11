@@ -3,7 +3,6 @@ package Core;
 import Actors.Piece;
 import Components.Event.MouseObserver;
 import Components.Graphics.Drawable;
-import Scenes.Game;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -28,31 +27,31 @@ public abstract class Scene {
     }
 
     /**
-     *
+     *Metodo di inizializazzione della scena
      */
     public abstract void Init();
 
     /**
-     *
+     *Metodo di aggirnamento della scena
      */
     public abstract void Update();
 
     /**
-     *
+     *Costruttore della scena
      */
     public Scene(){observers = new ArrayList<>();elements = new ArrayList<>();Init();}
 
     /**
-     *
-     * @return
+     *Torna oggetti che sono interagiscono con il Mouse
+     * @return insieme di ogetti
      */
     public ArrayList<MouseObserver> getObservers(){
         return observers;
     }
 
     /**
-     *
-     * @param element
+     *Aggiunge l'elemento in render coda della scene
+     * @param element elemento da aggiungere
      */
     public void addElement(Drawable element)
     {
@@ -64,16 +63,16 @@ public abstract class Scene {
     }
 
     /**
-     *
-     * @return
+     *Torna elementi che stanno in coda di render
+     * @return insieme di oggetti
      */
     public List<Drawable> getElements() {
         return elements;
     }
 
     /**
-     *
-     * @param mouseEvent
+     *Metodo che invia l'evento di Mouse a tutti gli elementi di coda di render che sono interattivi con Mouse
+     * @param mouseEvent evento di Mouse
      */
     public void notifyObservers(MouseEvent mouseEvent){
         for(MouseObserver obs : getObservers())
@@ -81,7 +80,7 @@ public abstract class Scene {
     }
 
     /**
-     *
+     *Metodo che esegue bubbleSort sui elementi di coda rendering
      */
     public void arrange(){
         for(int i = 0; i < elements.size(); i++) {
@@ -117,14 +116,14 @@ public abstract class Scene {
     }
 
     /**
-     *
-     * @param sceneType
+     *Metodo che imposta tipo di scena
+     * @param sceneType il tipo di scena
      */
     public void setSceneType(SCENE_TYPE sceneType){
         this.sceneType = sceneType;
     }
     /**
-     * Disegna tutti i elementi che stanno dentro il contenitore
+     * Disegna tutti i elementi che stanno nella coda
      * @param graphics l'oggetto che si occupa di operazioni grafiche
      */
     public void draw(Graphics graphics)

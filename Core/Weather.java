@@ -15,7 +15,7 @@ public final class Weather {
     private ArrayList<WeatherObserver> weatherObservers;
 
     /**
-     *
+     *Costruttore
      * @param weather
      */
     public Weather(WEATHER_TYPE weather){
@@ -29,9 +29,8 @@ public final class Weather {
             public void run() {
                 switchWeather();
                 notifyObservers();
-                //System.out.print(currentType.toString()+"\n");
             }
-        },5*1000,5*1000);
+        },60*1000,60*1000);
     }
 
     /**
@@ -88,7 +87,7 @@ public final class Weather {
     }
 
     /**
-     *
+     *Tipo di stagione
      */
     public enum WEATHER_TYPE{
         Autumn,Winter,Spring,Summer

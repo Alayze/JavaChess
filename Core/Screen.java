@@ -4,8 +4,6 @@ package Core;
  *  La classe principale di rendering
  */
 
-
-import Components.Event.MouseObserver;
 import Scenes.Game;
 import Scenes.MainMenu;
 
@@ -19,6 +17,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Screen extends Canvas{
+
     private int bufferWidth,bufferHeight;
 
     private Graphics bufferGraphics;
@@ -30,11 +29,18 @@ public class Screen extends Canvas{
     Scene mainMenu;
     Timer timer;
 
+    /**
+     * Metodo che aggiunge MouseListener
+     * @param mouseListener MouseListener da aggiungere
+     */
     @Override
     public synchronized void addMouseListener(MouseListener mouseListener) {
         super.addMouseListener(mouseListener);
     }
 
+    /**
+     * Costuttore di Screen
+     */
     public Screen()
     {
         initMouseListeners();
@@ -47,7 +53,6 @@ public class Screen extends Canvas{
         sceneManager.addScene(mainMenu);
         sceneManager.setCurrentScene(mainMenu);
 
-        //observers = new ArrayList<>();
 
         /** Timer serve per aggiornare lo schermo perche da solo non si aggiorna*/
         timer = new Timer();
@@ -66,7 +71,6 @@ public class Screen extends Canvas{
     public void resetBuffer(){
         bufferHeight = getSize().height;
         bufferWidth = getSize().width;
-        //System.out.println(bufferWidth);
 
         if(bufferImage!=null){
             bufferGraphics.dispose();
@@ -76,7 +80,6 @@ public class Screen extends Canvas{
             bufferImage.flush();
             bufferImage=null;
         }
-        //System.gc();
 
         bufferImage = createImage(bufferWidth,bufferHeight);
         bufferGraphics = bufferImage.getGraphics();
@@ -84,7 +87,7 @@ public class Screen extends Canvas{
 
     /**
      * Metodo che disegna frame in buffer
-     * @param graphics
+     * @param graphics instanza di Graphics
      */
     public void paintBuffer(Graphics graphics){
         setBackground(new Color(255,255,255,255));
@@ -92,7 +95,9 @@ public class Screen extends Canvas{
         sceneManager.draw(graphics);
 
     }
-    /**Definire come concrete class*/
+    /**
+     * Metodo che inizializza MouseListener principali
+     */
     private void initMouseListeners()
     {
         addMouseListener(new MouseAdapter() {
@@ -122,6 +127,10 @@ public class Screen extends Canvas{
         sceneManager.notifyObservers(mouseEvent);
     }
 
+    /**
+     *Metodo che disegna sullo schermo
+     * @param graphics instanza di Graphics
+     */
     @Override
     public void paint(Graphics graphics) {
         if(bufferWidth!=getSize().width ||
@@ -129,7 +138,6 @@ public class Screen extends Canvas{
                 bufferImage==null || bufferGraphics==null)
         resetBuffer();
 
-        //super.paint(graphics);
         if(bufferGraphics!=null){
             bufferGraphics.clearRect(0,0,bufferWidth,bufferHeight);
             paintBuffer(bufferGraphics);
@@ -141,9 +149,12 @@ public class Screen extends Canvas{
 
     }
 
+    /**
+     * Metodo che aggiorna lo schermo
+     * @param graphics instanza di Graphics
+     */
     @Override
     public void update(Graphics graphics) {
-        /*super.update(graphics);*/
         paint(graphics);
         sceneManager.getCurrentScene().Update();
     }

@@ -8,10 +8,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
+/**Menu Principale
  * Created by dimaer on 17/05/17.
  */
 public class MainMenu extends Scene{
+    /**
+     *Metodo che inizializza la scena
+     */
     @Override
     public void Init() {
         setSceneType(SCENE_TYPE.MAIN_MENU);
@@ -53,6 +56,9 @@ public class MainMenu extends Scene{
         addElement(options_btn);
     }
 
+    /**
+     * Metodo che aggiorna la Scena
+     */
     @Override
     public void Update() {
 

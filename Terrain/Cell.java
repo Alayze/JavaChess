@@ -20,10 +20,10 @@ public class Cell extends GameObject {
     private String spriteType;
     private boolean atackable;
     /**
-     *
-     * @param position
-     * @param spriteType
-     * @param weatherType
+     *Costruttore di cella
+     * @param position posizione iniziale sullo scherma
+     * @param spriteType tipo di sprite
+     * @param weatherType il tipo di stagione
      */
     public Cell(Point position, String spriteType, String weatherType){
         super(position);
@@ -33,21 +33,17 @@ public class Cell extends GameObject {
         attackColor = new Color(200,0,0,200);
         this.spriteType = spriteType;
         spriteOutline = new Sprite(position);
-        //sprite = new Sprite(position);
-        //System.out.print(getClass().toString() + ":[spriteType: " + spriteType + "]\n");
+
         getSprite().setImage(ResourceLoader.getInstance().LoadTile(weatherType,spriteType));
     }
     //Enumerazione che contiene dei valori di tipo di cella (il colore sulla scacchiera)
 
-    /**
-     *
-     */
     enum Type{
         TYPE1,TYPE2
     }
 
     /**
-     *
+     *Metodo che torna le coordinate della cella in base di scachiera
      * @return
      */
     public Point getCoord(){
@@ -59,8 +55,8 @@ public class Cell extends GameObject {
         return new Point(n,depth - (8*n));
     }
     /**
-     *
-     * @param type
+     *Metodo che imposta il tipo di cella
+     * @param type tipo di cella
      */
     public void setType(Type type)
     {
@@ -68,32 +64,40 @@ public class Cell extends GameObject {
     }
 
     /**
-     *
-     * @return
+     *Metodo che torna il topo di sprite
+     * @return il tipo di sprite
      */
     public String getSpriteType(){return spriteType;}
 
     /**
-     *
-     * @param atackable
+     *Metodo che imposta se la cella e' attacabile
+     * @param atackable flag
      */
     public void setAtackable(boolean atackable) {
         this.atackable = atackable;
     }
 
     /**
-     *
-     * @return
+     *Metodo che verifica se la cella e' attacabile
+     * @return flag
      */
     public boolean isAtackable() {
         return atackable;
     }
 
+    /**
+     *Aggiorna la cella
+     * @param mouseEvent evento di Mouse
+     */
     @Override
     public void update(MouseEvent mouseEvent) {
         super.update(mouseEvent);
     }
 
+    /**
+     *Metodo che disegna la cella
+     * @param graphics instanza di Graphics
+     */
     @Override
     public void draw(Graphics graphics) {
 
@@ -111,7 +115,6 @@ public class Cell extends GameObject {
             graphics.fillOval(getSprite().getCenter().x - 20, getSprite().getCenter().y, 40, 25);
             graphics.setColor(new Color(0,0,0));
         }
-       // graphics.drawString(" " + getCoord().x + "," + getCoord().y,getSprite().getCenter().x-5,getSprite().getCenter().y+20);
-        //graphics.drawString(" " + ,getSprite().getCenter().x-5,getSprite().getCenter().y+20);
+
     }
 }

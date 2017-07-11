@@ -19,9 +19,9 @@ public class Board extends GameObject implements WeatherObserver {
     Point mouse;
 
     /**
-     *
-     * @param position
-     * @param weather
+     *Costruttore di Board
+     * @param position posizione di board sullo schermo
+     * @param weather instanza di ogetto di Weather
      */
     public Board(Point position,Weather weather) {
         super(position);
@@ -33,7 +33,7 @@ public class Board extends GameObject implements WeatherObserver {
         cells = new ArrayList<>();
         convertedCells = new Cell[8][8];
         generateBoard(position);
-        //System.out.println(weather.getWeather().toString());
+
 
     }
     /**Metodo che aggiorna oservatori di Weather*/
@@ -91,7 +91,7 @@ public class Board extends GameObject implements WeatherObserver {
     }
 
     /**
-     * Funzione che torna la cella di scachiera che e' contenuta nell array bidimensionale
+     * Metodo che torna la cella di scachiera che e' contenuta nell array bidimensionale
      * @param x posizione orizzontale
      * @param y posizione verticale
      * @return cella di scachiera
@@ -104,21 +104,18 @@ public class Board extends GameObject implements WeatherObserver {
     }
 
     /**
-     *
-     * @param n
-     * @param ch
-     * @return
+     *Metodo che torna la cella di scachiera in base alla codifica numerica
+     * @param n numero di cella
+     * @param ch la lettera di cella
+     * @return cella di scachiera
      */
     public Cell getCell(int n,char ch){
-
-            //for(int y = 0;y<8;y++) {
-              return  convertedCells[n][ch - 97];
-            //}
+        return  convertedCells[n][ch - 97];
     }
 
     /**
-     *
-     * @return
+     *Metodo che inverte la matrice di celle
+     * @return l'insieme di celle invertito
      */
     private ArrayList<Cell> inverseMatrix()
     {
@@ -136,9 +133,9 @@ public class Board extends GameObject implements WeatherObserver {
     }
 
     /**
-     *
-     * @param n
-     * @return
+     *Metodo che torna la riga di scachiera
+     * @param n il numero della riga
+     * @return l'insieme di celle contenute nella riga
      */
     public ArrayList<Cell> getRow(int n){
         ArrayList<Cell> row = new ArrayList<>();
@@ -150,8 +147,9 @@ public class Board extends GameObject implements WeatherObserver {
 
     /**
      *
-     * @param n
-     * @return
+     * Metodo che torna la colonna di scachiera
+     * @param n il numero della colonna
+     * @return l'insieme di celle contenute nella colonna
      */
     public ArrayList<Cell> getColumn(int n){
         ArrayList<Cell> column = new ArrayList<>();
@@ -163,19 +161,12 @@ public class Board extends GameObject implements WeatherObserver {
 
     /**
      * Metodo che torna l'insieme di celle
-     * @return ArrayList<Cell> l'insieme di celle che compongono la scachiera
+     * @return l'insieme di celle che compongono la scachiera
      */
     public ArrayList<Cell> getCells() {
         return cells;
     }
-    /*private ArrayList<Cell> inverseMatrix()
-    {
-        ArrayList<Cell> inverseCells = new ArrayList<>();
-        for(int i = 0;i<cells.size();i++){
-            if()
-        }
 
-    }*/
     /**
      * Metodo che converte le coordinate cartesiane nelle coordinate isometriche
      * @param vector vettore da convertire
@@ -185,6 +176,10 @@ public class Board extends GameObject implements WeatherObserver {
         return new Point(vector.x-vector.y,(vector.x+vector.y)/2);
     }
 
+    /**
+     *Metodo che aggiorna le celle
+     * @param mouseEvent evento di Mouse
+     */
     @Override
     public void update(MouseEvent mouseEvent) {
         super.update(mouseEvent);
@@ -194,12 +189,15 @@ public class Board extends GameObject implements WeatherObserver {
         }
     }
 
+    /**
+     *Metodo che disegna la scachiera
+     * @param graphics instanza di Graphics
+     */
     @Override
     public void draw(Graphics graphics) {
-        //graphics.drawString(" "+ cartToIso(mouse).x + " " + cartToIso(mouse).y,mouse.x,mouse.y);
+
         for (Cell c : cells){
             c.draw(graphics);
-            //Log.getInstance().showOrigins(graphics,c.getSprite());
         }
     }
 }

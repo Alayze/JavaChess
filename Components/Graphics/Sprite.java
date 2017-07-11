@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * Created by dimaer on 20/03/17.
- * La classe Components.Graphics.Sprite rappresenta il componente principale di rendering
+ * La classe Sprite rappresenta il componente principale di rendering
  *
  */
 
@@ -33,7 +33,7 @@ public class Sprite implements Drawable {
     }
 
     /**
-     *
+     *Costruttore di Sprite
      */
     public Sprite(){
 
@@ -84,26 +84,30 @@ public class Sprite implements Drawable {
 
     }
 
+    /**
+     * Metodo che torna immagine impostata
+     * @return immagine impostata
+     */
     public BufferedImage getImage() {
         return image;
     }
 
     /**
      * Metodo che torna la posizione corrente
-     * @return Point vettore di posizione corrente
+     * @return vettore di posizione corrente
      */
     public Point getPosition() {
         return position;
     }
 
     /**
-     *
-     * @param vector
+     *Il metodo che imposta la posizione di sprite sullo schermo
+     * @param vector la posizione da impostare
      */
     public void setPosition(Point vector){position = vector;}
     /**
      * Il metodo che calcola le coordinate del centro di sprite rispetto all'immagine
-     * @return Point vettore dell centro
+     * @return le coordinate dell centro
      */
     public Point getCenter(){
         Point imageCenter = new Point(image.getWidth(imageObserver)/2,image.getHeight(imageObserver)/2);
@@ -112,31 +116,31 @@ public class Sprite implements Drawable {
     }
 
     /**
-     *
-     * @param origin
+     *Metodo che imposta le coordinate d'origine di sprite
+     * @param origin le coordinate nuove d'origine
      */
     public void setOrigin(Point origin) {
         this.origin = origin;
     }
 
     /**
-     *
-     * @return
+     *Metodo che torna le cooridinate d'origine
+     * @return coordinate d'origine
      */
     public Point getOrigin() {
         return origin;
     }
 
     /**
-     *
-     * @param visibility
+     *Metodo che imposta la visibilita di sprite sullo schermo
+     * @param visibility flag di visibilita
      */
     public void setVisibility(boolean visibility) {
         this.visibility = visibility;
     }
 
     /**
-     *
+     *Metodo che torna flag di visibilita'
      * @return
      */
     public boolean isVisibility() {
@@ -144,12 +148,11 @@ public class Sprite implements Drawable {
     }
 
     /**
-     *
-     * @param point
-     * @return
+     *Metodo che verifica se il punto sullo schermo e' contenuto nella regione di sprite
+     * @param point le coordinate del punto
+     * @return true se e' contenuto , false se il punto e' fuori
      */
     public boolean isContainPoint(Point point){
-        //System.out.println(getImage().getHeight());
         if(point.y >= getPosition().y && point.y <= image.getHeight() + getPosition().y)
             if(point.x >= getPosition().x && point.x <= image.getWidth() + getPosition().x)
                 return true;
@@ -158,9 +161,9 @@ public class Sprite implements Drawable {
     }
 
     /**
-     *
-     * @param point
-     * @return
+     *Metodo che verifica se il punto sullo schermo e' sovrapposto sui pixel di sprite
+     * @param point le coordinate del punto
+     * @return true se e' contenuto , false se il punto e' fuori
      */
     public boolean perPixelCollision(Point point){
         if(isContainPoint(point))
@@ -187,7 +190,7 @@ public class Sprite implements Drawable {
     }
     /**
      * Metodo che torna l'ordine di rendering
-     * @return int ordine di render
+     * @return ordine di render
      */
     public int getDepth() {
         return depth;
@@ -201,7 +204,7 @@ public class Sprite implements Drawable {
         this.depth = depth;
     }
     /**
-     * Metodo che disegna l'immagine
+     * Metodo che disegna sprite
      * @param graphics
      */
     @Override

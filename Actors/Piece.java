@@ -13,31 +13,34 @@ import java.awt.event.MouseEvent;
  */
 public abstract class Piece extends GameObject{
 
-    //private Sprite sprite;
-    private Sprite spriteOutline;
 
-    //private boolean selected;
+    private Sprite spriteOutline;
 
     private Cell currentCell;
 
-    //private Color color;
     private Team.TEAMTYPE team;
 
+    /**
+     *Costruttore di Piece
+     */
     public Piece(){}
+
+    /**
+     *Costruttore di Piece
+     * @param cell cella iniziale
+     * @param team tipo di squadra
+     */
     public Piece(Cell cell, Team.TEAMTYPE team){
-        //selected = false;
         super(cell.getPosition());
         this.team = team;
-        name = "PIECE";
-        //sprite = new Sprite(cell.getPosition());
+
         spriteOutline = new Sprite(cell.getPosition());
         spriteOutline.setVisibility(false);
         currentCell = cell;
 
         getSprite().setDepth(getCurrentCell().getSprite().getDepth());
         getSpriteOutline().setDepth(getCurrentCell().getSprite().getDepth());
-        //mouse = new Point();
-        //color = new Color(255,255,255);
+
     }
 
     /**
@@ -56,74 +59,85 @@ public abstract class Piece extends GameObject{
         getSpriteOutline().setDepth(getCurrentCell().getSprite().getDepth());
 
     }
-    public abstract void Die();
 
+    /**
+     *Metodo che imposta la cella corrente
+     * @param currentCell cella da impostare
+     */
     public void setCurrentCell(Cell currentCell) {
         this.currentCell = currentCell;
     }
 
+    /**
+     *Metodo che torna la cella corrente
+     * @return cella corrente
+     */
     public Cell getCurrentCell() {
         return currentCell;
     }
 
+    /**
+     *Metodo che torna tipo di squadra
+     * @return tipo di squadra
+     */
+
     public Team.TEAMTYPE getTeam() {
         return team;
     }
-    /*public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
 
-    public boolean isSelected() {
-        return selected;
-    }
-*/
-    /*public Sprite getSprite()
-    {
-        return sprite;
-    }
-*/
-  /*  protected void setSprite(String Team,String id){
-        sprite.setImage(ResourceLoader.getInstance().LoadSprite(Team,id));
-    }*/
-
+    /**
+     *Metodo che imposta la nuova posizione
+     * @param position nuova posizione
+     */
     @Override
     public void setPosition(Point position) {
         super.setPosition(position);
         spriteOutline.setPosition(position);
     }
 
+    /**
+     *Metodo che carica sprite con pedina evidenziata
+     * @param Team tipo di squadra
+     * @param id il nome di sprite specificato in Resources.xml
+     */
     protected void setSpriteOutline(String Team, String id){
         spriteOutline.setImage(ResourceLoader.getInstance().LoadSprite(Team,id));
     }
+
+    /**
+     *Metodo che torna sprite di pedina evidenziata
+     * @return sprite di pedina evidenziata
+     */
     public Sprite getSpriteOutline(){
         return spriteOutline;
     }
 
+    /**
+     *Metodo che disgena la pedina
+     * @param graphics instanza di Graphics
+     */
     @Override
     public void draw(Graphics graphics) {
-        //sprite.draw(graphics);
         if(isVisibility()){
             super.draw(graphics);
             spriteOutline.draw(graphics);
         }
-         //graphics.drawString(""+getSprite().getDepth(),getSprite().getPosition().x,getSprite().getPosition().y-50);
-        /*if(perPixelCollision(new Point(mouse.x,mouse.y)))
-            graphics.setColor(new Color(100,0,0));
-        else
-            graphics.setColor(new Color(0,0,0,0));
-
-        graphics.fillRect(getSprite().getPosition().x,getSprite().getPosition().y,
-                getSprite().getImage().getWidth(),
-                getSprite().getImage().getHeight());*/
-        //graphics.drawString(" " + (mouse.y - getSprite().getPosition().y),getSprite().getPosition().x,getSprite().getPosition().y);
     }
 
+    /**
+     *Metodo che imposta la selezione
+     * @param selected
+     */
     @Override
     public void setSelected(boolean selected) {
         super.setSelected(selected);
         spriteOutline.setVisibility(selected);
     }
 
+    /**
+     *Metodo che aggiorna la pedina
+     * @param mouseEvent evento di Mouse
+     */
     @Override
     public void update(MouseEvent mouseEvent) {
         super.update(mouseEvent);

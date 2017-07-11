@@ -72,10 +72,9 @@ public final class ResourceLoader {
                     Element sprite = (Element) sprites.item(sprite_count);
 
                     if(sprite.getAttribute("id").equals(id)){
-                        //System.out.print("Load_Tile: [OK : " + sprite.getElementsByTagName("path").item(0).getTextContent() + "]" + "\n");
+
                         String template = sprite.getElementsByTagName("path").item(0).getTextContent();
-                        //return sprite.getElementsByTagName("path").item(0).getTextContent();
-                        //System.out.print(template + "\n");
+
                         return  template;
                     }
                 }
@@ -144,7 +143,7 @@ public final class ResourceLoader {
             for(int annotation_count = 0;annotation_count<annotationList.getLength();annotation_count++)
             {
                 Element annElement = (Element) annotationList.item(annotation_count);
-                //Da cambiare
+
                 if(annElement.getAttribute("id").charAt(0) == (text))
                 {
                     return annElement.getElementsByTagName("tile").item(0).getTextContent();
@@ -172,7 +171,7 @@ public final class ResourceLoader {
 
                 if(level.getAttribute("id").equals(id)){
                     String levelTemplate = level.getTextContent();
-                    //System.out.print(formatString(levelTemplate));
+
                     return formatString(levelTemplate);
                 }
             }

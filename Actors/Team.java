@@ -16,6 +16,11 @@ public class Team implements Drawable,MouseObserver {
     private ArrayList<Piece> members;
     TEAMTYPE teamtype;
 
+    /**
+     *
+     * @param teamtype
+     * @param board
+     */
     public Team(TEAMTYPE teamtype,Board board)
     {
         members = new ArrayList<>();
@@ -51,24 +56,51 @@ public class Team implements Drawable,MouseObserver {
 
         }
     }
+
+    /**
+     *
+     * @return
+     */
     public int getTeamSize(){
         return members.size();
     }
+
+    /**
+     *
+     * @param member
+     */
     public void deleteMember(Piece member){
         members.remove(member);
     }
+
+    /**
+     *
+     * @param member
+     */
     public void addMember(Piece member){
         members.add(member);
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Piece> getMembers() {
         return members;
     }
 
+    /**
+     *
+     * @return
+     */
     public TEAMTYPE getTeamtype() {
         return teamtype;
     }
 
+    /**
+     *
+     * @param graphics instanza di Graphics
+     */
     @Override
     public void draw(Graphics graphics) {
         for (Piece piece : members){
@@ -76,6 +108,10 @@ public class Team implements Drawable,MouseObserver {
         }
     }
 
+    /**
+     *
+     * @param mouseEvent evento di Mouse
+     */
     @Override
     public void update(MouseEvent mouseEvent) {
         for(Piece p : members) {

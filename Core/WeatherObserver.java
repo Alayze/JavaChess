@@ -6,7 +6,7 @@ package Core;
  */
 public interface WeatherObserver {
     /**
-     *
+     *Metodo che imposta nuovo sprite
      */
     void setSprite();
 }

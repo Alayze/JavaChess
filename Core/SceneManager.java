@@ -50,8 +50,8 @@ public final class SceneManager {
     }
 
     /**
-     * Metodo
-     * @param sceneType
+     * Metodo che imposta la scena corrente in base al tipo di scena
+     * @param sceneType tipo di scena
      */
     public void setCurrentScene(Scene.SCENE_TYPE sceneType){
         for (Scene scene : scenes){
@@ -64,36 +64,32 @@ public final class SceneManager {
     }
 
     /**
-     *
-     * @return
+     * Metodo che torna la scena corrente
+     * @return scena corrente
      */
     public Scene getCurrentScene() {
         return currentScene;
     }
 
     /**
-     *
-     * @param mouseEvent
+     *Metodo che invia l'evento di Mouse alla scena corrente
+     * @param mouseEvent evento di Mouse
      */
     public void notifyObservers(MouseEvent mouseEvent){
         getCurrentScene().notifyObservers(mouseEvent);
     }
 
     /**
-     *
+     *Metodo che torna l'insieme di scene che sono contenute in SceneManager
      * @return
      */
     public ArrayList<Scene> getScenes(){
         return scenes;
     }
 
-
-    /*public ArrayList<MouseObserver> getObservers(){
-        return currentScene.getObservers();
-    }*/
     /**
-     * Funzione che disegna la scena
-     * @param graphics
+     * Metodo che disegna la scena
+     * @param graphics instanza di Graphics
      */
     public void draw(Graphics graphics)
     {

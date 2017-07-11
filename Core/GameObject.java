@@ -9,13 +9,12 @@ import java.awt.event.MouseEvent;
 
 /**
  * Created by dimaer on 24/03/17.
- * La classe base di tutti le entita' che interagiscono con utente
+ * La classe base di tutti le entita' interattive
  */
 public class GameObject implements Drawable, MouseObserver {
 
     private boolean selected;
 
-    public String name;
     private Sprite sprite;
 
     private Point position;
@@ -26,8 +25,15 @@ public class GameObject implements Drawable, MouseObserver {
 
     private Rectangle boundRect;
 
+    /**
+     * Costruttore di GameObject
+     */
     public GameObject(){}
 
+    /**
+     * Costruttore di GameObject
+     * @param position posizione iniziale
+     */
     public GameObject(Point position)
     {
         
@@ -38,19 +44,26 @@ public class GameObject implements Drawable, MouseObserver {
         sprite = new Sprite(position);
     }
 
+    /**
+     *Metodo che attiva GameObject
+     * @param active flag
+     */
     public void setActive(boolean active) {
         this.active = active;
     }
 
+    /**
+     *Metodo che torna flag
+     * @return true se GameObject e' attivo invece false
+     */
     public boolean isActive() {
         return active;
     }
 
-
-    public void setVisibility(boolean visibility) {
-        this.visibility = visibility;
-    }
-
+    /**
+     *Metodo che verifica se oggetto e' visibile
+     * @return
+     */
     public boolean isVisibility() {
         return visibility;
     }
@@ -72,21 +85,34 @@ public class GameObject implements Drawable, MouseObserver {
         this.boundRect = boundRect;
     }
 
+    /**
+     *Metodo che carica sprite dalla memmoria di massa
+     * @param Team Squadra
+     * @param id Nome di file che e' stato impostato in Resources.xml
+     */
     public void setSprite(String Team,String id){
         sprite.setImage(ResourceLoader.getInstance().LoadSprite(Team,id));
     }
 
+    /**
+     *Metodo che imposta sprite
+     * @param sprite sprite da impostare
+     */
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
     }
 
+    /**
+     *Metodo che torna sprite corrente
+     * @return sprite corrente
+     */
     public Sprite getSprite() {
         return sprite;
     }
 
     /**
      * Metodo gettere della posizione di oggetto
-     * @return
+     * @return posizione corrente sullo schermo
      */
     public Point getPosition() {
         return position;
@@ -100,20 +126,36 @@ public class GameObject implements Drawable, MouseObserver {
         return boundRect;
     }
 
+    /**
+     *Metodo che imposta se l'ogetto e' stato selezionato
+     * @param selected flag
+     */
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
 
+    /**
+     *Metodo che verifica se l'ogetto e' stato selezionate
+     * @return flag
+     */
     public boolean isSelected() {
         return selected;
     }
 
+    /**
+     *Metodo che disegna l'oggetto
+     * @param graphics instanza di Graphics
+     */
     @Override
     public void draw(Graphics graphics) {
         if(isVisibility())
         sprite.draw(graphics);
     }
 
+    /**
+     *Metodo viene invocato ad ogni evento di mouse
+     * @param mouseEvent
+     */
     @Override
     public void update(MouseEvent mouseEvent) {
         if(isActive()) {
@@ -125,12 +167,6 @@ public class GameObject implements Drawable, MouseObserver {
             }
             if (mouseEvent.getID() == MouseEvent.MOUSE_CLICKED) {
                 if (getSprite().perPixelCollision(mouse)) {
-                    /*if (!isSelected()) {
-                        setSelected(true);
-
-                    } else {
-                        setSelected(false);
-                    }*/
 
                 }
 

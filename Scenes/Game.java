@@ -14,7 +14,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-/**
+/** Gioco
  * Created by dimaer on 17/05/17.
  */
 public final class Game extends Scene {
@@ -24,17 +24,17 @@ public final class Game extends Scene {
     Label labelSeason;
     MouseObserver selectedSprite;
     Piece selectedPiece;
-    Turn currentTurn;
+    Team.TEAMTYPE currentTurn;
 
-    enum Turn{
-        Blue,Red
-    }
-
+    /**
+     * Metodo che inizializza la scena
+     */
     @Override
     public void Init() {
 
 
-        currentTurn = Turn.Blue;
+        currentTurn = Team.TEAMTYPE.Blue;
+
         setSceneType(SCENE_TYPE.RUNNED_GAME);
         board = new Board(new Point(390,-300),new Weather(Weather.WEATHER_TYPE.Winter));
 
@@ -86,9 +86,9 @@ public final class Game extends Scene {
     }
 
     /**
-     *
-     * @param mouseEvent
-     * @return
+     *Metodo che torna oggetto selezionato dal mouse
+     * @param mouseEvent evento di Mouse
+     * @return ogetto selezionato
      */
     public MouseObserver getSelected(MouseEvent mouseEvent){
 
@@ -126,18 +126,18 @@ public final class Game extends Scene {
     }
 
     /**
-     *
+     *Cambia la squadra corrente
      */
     public void switchTeam(){
-        if(currentTurn == Turn.Blue){
-            currentTurn = Turn.Red;
+        if(currentTurn == Team.TEAMTYPE.Blue){
+            currentTurn = Team.TEAMTYPE.Red;
         }else
-            currentTurn = Turn.Blue;
+            currentTurn = Team.TEAMTYPE.Blue;
     }
 
     /**
-     *
-     * @param piece
+     *Attiva le celle in base della pedina
+     * @param piece pedina
      */
     public void makeCellActive(Piece piece){
 
@@ -309,8 +309,19 @@ public final class Game extends Scene {
 
                         if (isValid(cellDownLeft) && !breakCellDownLeft)
                             cellDownLeft.setActive(true);
-                        else
+                        else{
+
+                            Piece p = getPiece(cellDownLeft);
+
+                            if(p!= null && p.getTeam()!=piece.getTeam() && !breakCellDownLeft){
+                                cellDownLeft.setActive(true);
+                                cellDownLeft.setAtackable(true);
+                                breakCellDownLeft = true;
+                            }
+
                             breakCellDownLeft = true;
+                        }
+
                     }
                 }
                 break;
@@ -484,7 +495,7 @@ public final class Game extends Scene {
     }
 
     /**
-     *
+     *Disabilita' tutte le celle
      */
     public void disableCell(){
         for(Cell cell : board.getCells()){
@@ -493,9 +504,9 @@ public final class Game extends Scene {
     }
 
     /**
-     *
-     * @param cell
-     * @return
+     *Cerca se la cella e' vuota
+     * @param cell cella da verificare
+     * @return true se la cella e' vuota altrimenti false
      */
     public boolean isValid(Cell cell){
         for(Drawable drawable : getElements()){
@@ -508,6 +519,11 @@ public final class Game extends Scene {
         return true;
     }
 
+    /**
+     *Torna la pedina sulla cella specifica
+     * @param cell cella da esaminare
+     * @return pedina
+     */
     public Piece getPiece(Cell cell){
         for(Drawable drawable : getElements()){
             if(drawable instanceof Piece){
@@ -519,21 +535,30 @@ public final class Game extends Scene {
         return null;
     }
 
+    /**
+     * Metodo che porta l'evento ai elementi di scene
+     * @param mouseEvent evento di Mouse
+     */
     @Override
     public void notifyObservers(MouseEvent mouseEvent) {
         selectedSprite = getSelected(mouseEvent);
         GameObject gm = (GameObject) selectedSprite;
-        if(selectedSprite!=null) {
-            if (gm.isSelected())
-                ((GameObject) selectedSprite).setSelected(false); //Polimorfismo
-            else{
-                gm.setSelected(true);
-            }
-
+        if(selectedSprite!=null && selectedSprite instanceof Piece) {
+                Piece p = (Piece) selectedSprite;
+                if (p.getTeam() == currentTurn) {
+                    if (gm.isSelected())
+                        ((GameObject) selectedSprite).setSelected(false); //Polimorfismo
+                    else {
+                        gm.setSelected(true);
+                    }
+                }
         }
 
     }
 
+    /**
+     * Aggiorna la scena
+     */
     @Override
     public void Update() {
             if(selectedSprite instanceof Piece) {

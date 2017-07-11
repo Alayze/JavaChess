@@ -13,6 +13,12 @@ public class Pawn extends Piece {
 
     public Pawn(){}
 
+    /**
+     *
+     * Costruttore di Pawn
+     * @param cell cella iniziale
+     * @param teamtype tipo di squadra
+     */
     public Pawn(Cell cell, Team.TEAMTYPE teamtype)
     {
         super(cell,teamtype);
@@ -26,24 +32,4 @@ public class Pawn extends Piece {
         setSpriteOutline(teamtype.toString(),"Pawn-outline");
     }
 
-
-    /*@Override
-    public void Move(Cell cell) {
-
-    }*/
-
-    @Override
-    public void Die() {
-
-    }
-
-    /* @Override
-    public void draw(Graphics graphics) {
-        sprite.draw(graphics);
-    }
-
-    @Override
-    public void update(MouseEvent mouseEvent, String message) {
-
-    }*/
 }
